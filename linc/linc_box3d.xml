@@ -1,0 +1,103 @@
+<xml>
+	<set name="LINC_BOX3D" value="1"/>
+	<set name="HXCPP_NO_GNU99" value="1" if="linux" /> <!-- Prevent hxcpp shadowing our std -->
+
+   <files id="box3d-depends">
+      <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/base.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/box3d.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/collision.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/config.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/constants.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/id.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/math_functions.h" />
+	  <depend name="${LINC_BOX3D_PATH}/lib/box3d/include/box3d/types.h" />
+   </files>
+
+	<files id="box3d">
+		<compilerflag value="-I${LINC_BOX3D_PATH}/lib/box3d/include/" />
+		<compilerflag value="/std:c17" if="isMsvc" /> <!-- current hxcpp haxelib version (4.3.2) doesnt have HXCPP_C_STANDARD -->
+		<compilerflag value="-std=c17" unless="isMsvc" />
+		<compilerflag value="/W4" if="isMsvc" />
+		<compilerflag value="/wd4820" if="isMsvc" />
+		<compilerflag value="/wd5045" if="isMsvc" />
+		<compilerflag value="/wd4061" if="isMsvc" />
+		<compilerflag value="/wd4711" if="isMsvc" />
+		<compilerflag value="/wd4710" if="isMsvc" />
+		<depend files="box3d-depends" />
+
+		<compilerflag value="-DBOX3D_DISABLE_SIMD" if="HXCPP_M32 linux" /> <!-- Disable unsupported instruction set in 32 bit -->
+		
+		<!-- Enable SSE instruction set in WebAssembly -->
+		<compilerflag value="-msimd128" if="emscripten" /> 
+		<compilerflag value="-msse2" if="emscripten" />
+		
+		<!-- Enable POSIX functions -->
+		<compilerflag value="-D_GNU_SOURCE" if="emscripten" />
+
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/aabb.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/arena_allocator.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/bitset.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/block_allocator.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/body.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/broad_phase.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/capsule.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/compound.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/constraint_graph.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/contact.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/contact_solver.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/convex_manifold.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/core.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/distance.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/distance_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/dynamic_tree.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/height_field.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/hull.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/id_pool.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/island.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/manifold.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/math_functions.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/mesh.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/mesh_contact.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/motor_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/mover.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/name_cache.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/parallel_for.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/parallel_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/physics_world.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/prismatic_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/recording.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/recording_replay.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/world_snapshot.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/revolute_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/scheduler.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/sensor.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/shape.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/simd.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/solver.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/solver_set.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/sphere.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/spherical_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/table.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/timer.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/triangle_manifold.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/types.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/weld_joint.c" />
+		<file name="${LINC_BOX3D_PATH}/lib/box3d/src/wheel_joint.c" />
+	</files>
+
+	<files id="haxe">
+		<compilerflag value='-DLINC_BOX3D' if="LINC_BOX3D"/>
+		<compilerflag value="-I${LINC_BOX3D_PATH}/linc/" />
+		<compilerflag value="-I${LINC_BOX3D_PATH}/lib/box3d/include/" />
+    </files>
+
+	<target id="haxe">
+        <files id="box3d" if="LINC_BOX3D" />
+    </target>
+
+	<files id="__main__">
+		<compilerflag value="-I${LINC_BOX3D_PATH}/linc/" />
+	</files>
+	
+</xml>
