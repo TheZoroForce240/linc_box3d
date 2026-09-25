@@ -1,7 +1,7 @@
 # linc_box3d
 Haxe/Hxcpp @:native bindings for [Box3D](https://github.com/erincatto/box3d)
 
-![Example image](https://github.com/TheZoroForce240/linc_box3d/blob/main/git/screenshot.png)
+![Example image](https://github.com/TheZoroForce240/linc_box3d/blob/main/test/flixel-foxlite/screenshot.png)
 
 ## Installation
 
