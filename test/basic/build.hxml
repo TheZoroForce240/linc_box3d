@@ -1,0 +1,4 @@
+--library linc_box3d
+--define HXCPP_M64
+-main Main.hx
+-cpp bin/
