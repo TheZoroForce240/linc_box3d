@@ -50,6 +50,8 @@ var ignoredFuncs:Array<String> = [
     "b3SetAssertFcn",
     "b3InternalAssert",
     "b3SetLogFcn",
+
+    "b3GetMeshNodes",
     /*
     "b3GetMillisecondsAndReset",
     "b3Hash",
@@ -94,36 +96,108 @@ var manualStructs:Array<CStructDecl> = [
     {name: "b3Matrix3", memberTypes: ["b3Vec3", "b3Vec3", "b3Vec3"], memberNames: ["cx", "cy", "cz"], memberArrayCount: [1,1,1]},
     {name: "b3WorldCastOutput", memberTypes: ["b3Vec3", "b3Vec3", "float", "int", "int", "int", "int", "bool"], memberNames: ["normal", "point", "fraction", "iterations", "triangleIndex", "childIndex", "materialIndex", "hit"], memberArrayCount: [1, 1, 1, 1, 1, 1, 1, 1]},
     {name: "b3CastOutput", memberTypes: ["b3Vec3", "b3Vec3", "float", "int", "int", "int", "int", "bool"], memberNames: ["normal", "point", "fraction", "iterations", "triangleIndex", "childIndex", "materialIndex", "hit"], memberArrayCount: [1, 1, 1, 1, 1, 1, 1, 1]},
+
+    //swap out if double precision is enabled
+    //{name: "b3Pos", memberTypes: ["double", "double", "double"], memberNames: ["x", "y", "z"], memberArrayCount: [1,1,1]},
+    //{name: "b3WorldCastOutput", memberTypes: ["b3Vec3", "b3Pos", "float", "int", "int", "int", "int", "bool"], memberNames: ["normal", "point", "fraction", "iterations", "triangleIndex", "childIndex", "materialIndex", "hit"], memberArrayCount: [1, 1, 1, 1, 1, 1, 1, 1]},
+
+    {name: "b3DebugDraw", memberTypes: [
+        "b3DebugDrawDrawShapeFcn",
+        "b3DebugDrawDrawSegmentFcn",
+        "b3DebugDrawDrawTransformFcn",
+        "b3DebugDrawDrawPointFcn",
+        "b3DebugDrawDrawSphereFcn",
+        "b3DebugDrawDrawCapsuleFcn",
+        "b3DebugDrawDrawBoundsFcn",
+        "b3DebugDrawDrawBoxFcn",
+        "b3DebugDrawDrawStringFcn",
+        "b3AABB",
+        "float",
+        "float",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "bool",
+        "void*",
+    ], memberNames: [
+        "DrawShapeFcn",
+        "DrawSegmentFcn",
+        "DrawTransformFcn",
+        "DrawPointFcn",
+        "DrawSphereFcn",
+        "DrawCapsuleFcn",
+        "DrawBoundsFcn",
+        "DrawBoxFcn",
+        "DrawStringFcn",
+        "drawingBounds",
+        "forceScale",
+        "jointScale",
+        "drawShapes",
+        "drawJoints",
+        "drawJointExtras",
+        "drawBounds",
+        "drawMass",
+        "drawSleep",
+        "drawBodyNames",
+        "drawContacts",
+        "drawAnchorA",
+        "drawGraphColors",
+        "drawContactFeatures",
+        "drawContactNormals",
+        "drawContactForces",
+        "drawIslands",
+        "context",
+    ], memberArrayCount: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
 ];
 
 var structList:Array<String> = [];
 var enumList:Array<String> = [];
 
-var callbacks:Array<String> = [
-    "b3TaskCallback",
-    "b3EnqueueTaskCallback",
-    "b3FinishTaskCallback",
-    "b3CreateDebugShapeCallback",
-    "b3DestroyDebugShapeCallback",
-    "b3FrictionCallback",
-    "b3RestitutionCallback",
-    "b3CustomFilterFcn",
-    "b3PreSolveFcn",
-    "b3OverlapResultFcn",
-    "b3CastResultFcn",
-    "b3TreeQueryCallbackFcn",
-    "b3TreeQueryClosestCallbackFcn",
-    "b3TreeBoxCastCallbackFcn",
-    "b3TreeRayCastCallbackFcn",
-    "b3PlaneResultFcn",
-    "b3MoverFilterFcn",
-    "b3CompoundQueryFcn",
-    "b3MeshQueryFcn",
+var callbacks:Map<String, CFuncDecl> = [
+    "b3TaskCallback" => {name: "b3TaskCallback", retType: "void", argNames: ["taskContext"], argTypes: ["void*"]},
+    "b3EnqueueTaskCallback" => {name: "b3EnqueueTaskCallback", retType: "void*", argNames: ["task", "taskContext", "userContext", "taskName"], argTypes: ["b3TaskCallback*", "void*", "void*", "const char*"]},
+    "b3FinishTaskCallback" => {name: "b3FinishTaskCallback", retType: "void", argNames: ["userTask", "userContext"], argTypes: ["void*", "void*"]},
+    "b3CreateDebugShapeCallback" => {name: "b3CreateDebugShapeCallback", retType: "void*", argNames: ["debugShape", "userContext"], argTypes: ["const b3DebugShape*", "void*"]},
+    "b3DestroyDebugShapeCallback" => {name: "b3DestroyDebugShapeCallback", retType: "void", argNames: ["userShape", "userContext"], argTypes: ["void*", "void*"]},
+    "b3FrictionCallback" => {name: "b3FrictionCallback", retType: "float", argNames: ["frictionA", "userMaterialIdA", "frictionB", "userMaterialIdB"], argTypes: ["float", "uint64_t", "float", "uint64_t"]},
+    "b3RestitutionCallback" => {name: "b3RestitutionCallback", retType: "float", argNames: ["restitutionA", "userMaterialIdA", "restitutionB", "userMaterialIdB"], argTypes: ["float", "uint64_t", "float", "uint64_t"]},
+    "b3CustomFilterFcn" => {name: "b3CustomFilterFcn", retType: "bool", argNames: ["shapeIdA", "shapeIdB", "context"], argTypes: ["b3ShapeId", "b3ShapeId", "void*"]},
+    "b3PreSolveFcn" => {name: "b3PreSolveFcn", retType: "bool", argNames: ["shapeIdA", "shapeIdB", "point", "normal", "context"], argTypes: ["b3ShapeId", "b3ShapeId", "b3Pos", "b3Vec3", "void*"]},
+    "b3OverlapResultFcn" => {name: "b3OverlapResultFcn", retType: "bool", argNames: ["shapeId", "context"], argTypes: ["b3ShapeId", "void*"]},
+    "b3CastResultFcn" => {name: "b3CastResultFcn", retType: "float", argNames: ["shapeId", "point", "normal", "fraction", "userMaterialId", "triangleIndex", "childIndex", "context"], argTypes: ["b3ShapeId", "b3Pos", "b3Vec3", "float", "uint64_t", "int", "int", "void*"]},
+    "b3TreeQueryCallbackFcn" => {name: "b3TreeQueryCallbackFcn", retType: "bool", argNames: ["proxyId", "userData", "context"], argTypes: ["int", "uint64_t", "void*"]},
+    "b3TreeQueryClosestCallbackFcn" => {name: "b3TreeQueryClosestCallbackFcn", retType: "float", argNames: ["distanceSqrMin", "proxyId", "userData", "context"], argTypes: ["float", "int", "uint64_t", "void*"]},
+    "b3TreeBoxCastCallbackFcn" => {name: "b3TreeBoxCastCallbackFcn", retType: "float", argNames: ["input", "proxyId", "userData", "context"], argTypes: ["const b3BoxCastInput*", "int", "uint64_t", "void*"]},
+    "b3TreeRayCastCallbackFcn" => {name: "b3TreeRayCastCallbackFcn", retType: "float", argNames: ["input", "proxyId", "userData", "context"], argTypes: ["const b3RayCastInput*", "int", "uint64_t", "void*"]},
+    "b3PlaneResultFcn" => {name: "b3PlaneResultFcn", retType: "bool", argNames: ["shapeId", "plane", "planeCount", "context"], argTypes: ["b3ShapeId", "const b3PlaneResult*", "int", "void*"]},
+    "b3MoverFilterFcn" => {name: "b3MoverFilterFcn", retType: "bool", argNames: ["shapeId", "context"], argTypes: ["b3ShapeId", "void*"]},
+    "b3CompoundQueryFcn" => {name: "b3CompoundQueryFcn", retType: "bool", argNames: ["compound", "childIndex", "context"], argTypes: ["const b3CompoundData*", "int", "void*"]},
+    "b3MeshQueryFcn" => {name: "b3MeshQueryFcn", retType: "bool", argNames: ["a", "b", "c", "triangleIndex", "context"], argTypes: ["b3Vec3", "b3Vec3", "b3Vec3", "int", "void*"]},
 
-    //temp
+
+    "b3DebugDrawDrawShapeFcn" => {name: "b3DebugDrawDrawShapeFcn", retType: "void", argNames: ["userShape", "transform", "color", "context"], argTypes: ["void*", "b3WorldTransform", "b3HexColor", "void*"]},
+    "b3DebugDrawDrawSegmentFcn" => {name: "b3DebugDrawDrawSegmentFcn", retType: "void", argNames: ["p1", "p2", "color", "context"], argTypes: ["b3Pos", "b3Pos", "b3HexColor", "void*"]},
+    "b3DebugDrawDrawTransformFcn" => {name: "b3DebugDrawDrawTransformFcn", retType: "void", argNames: ["transform", "context"], argTypes: ["b3WorldTransform", "void*"]},
+    "b3DebugDrawDrawPointFcn" => {name: "b3DebugDrawDrawPointFcn", retType: "void", argNames: ["p", "size", "color", "context"], argTypes: ["b3Pos", "float", "b3HexColor", "void*"]},
+    "b3DebugDrawDrawSphereFcn" => {name: "b3DebugDrawDrawSphereFcn", retType: "void", argNames: ["p", "radius", "color", "alpha", "context"], argTypes: ["b3Pos", "float", "b3HexColor", "float", "void*"]},
+    "b3DebugDrawDrawCapsuleFcn" => {name: "b3DebugDrawDrawCapsuleFcn", retType: "void", argNames: ["p1", "p2", "radius", "color", "alpha", "context"], argTypes: ["b3Pos", "b3Pos", "float", "b3HexColor", "float", "void*"]},
+    "b3DebugDrawDrawBoundsFcn" => {name: "b3DebugDrawDrawBoundsFcn", retType: "void", argNames: ["aabb", "color", "context"], argTypes: ["b3AABB", "b3HexColor", "void*"]},
+    "b3DebugDrawDrawBoxFcn" => {name: "b3DebugDrawDrawBoxFcn", retType: "void", argNames: ["extents", "transform", "color", "context"], argTypes: ["b3Vec3", "b3WorldTransform", "b3HexColor", "void*"]},
+    "b3DebugDrawDrawStringFcn" => {name: "b3DebugDrawDrawStringFcn", retType: "void", argNames: ["p", "s", "color", "context"], argTypes: ["b3Pos", "const char*", "b3HexColor", "void*"]},
+];
+var opaqueStructs:Array<String> = [
     "b3Recording",
-    "B3RecPlayer",
-    "B3DebugDraw"
+    "b3RecPlayer"
 ];
 
 var haxeHeader:String = "package box3d;";
@@ -175,6 +249,9 @@ function main() {
     haxeFuncOutput += "\n}";
 
     haxeEnumOutput += generateBindingsForCallbacks().hxDef;
+    for (o in opaqueStructs) {
+        haxeEnumOutput += "\n" + generateBindingForOpaqueStruct(o).hxDef;
+    }
 
     //File.saveContent("../output.cpp", cppHeader + cppStructOutput + cppFuncOutput);
     File.saveContent("../output.hx", haxeHeader + haxeStructOutput + haxeEnumOutput + haxeFuncOutput);
@@ -206,7 +283,7 @@ function gatherFunctionsInCode(code:String, ident:String):Array<CFuncDecl> {
         var funcName:String = code.substring(funcNameStart, argsStart-1);
         var argsRaw:String = code.substring(argsStart, argsEnd-1);
 
-        if (ignoredFuncs.contains(funcName) || (retType.contains("const ") && retType != "const char*")) {
+        if (ignoredFuncs.contains(funcName)) {
             haxeHeader += "\n// Skipped Function: " + retType + " " + funcName;
             nextFuncSearchIndex = curFuncSearchIndex+1;
             continue;
@@ -437,25 +514,6 @@ function generateBindingsForStruct(struct:CStructDecl) {
     binding.hxDef += '\n}';
     binding.hxDef += '\n';
 
-    /*
-@:forward()
-@:transitive
-abstract B3Vec3(B3Vec3Struct) from B3Vec3Struct to B3Vec3Struct {
-	overload extern public inline function new() { this = untyped __cpp__("b3Vec3()"); }
-	overload extern public inline function new(v:B3Vec3Struct) { this = v; }
-	overload extern public inline function new(v:B3Vec3Native) { this = cast v; }
-	@:from @:noCompletion public static inline function fromNative(v:B3Vec3Native):B3Vec3 { return new B3Vec3(v); }
-	@:to @:noCompletion public static inline function toNative(v:B3Vec3):B3Vec3Native { return cast v; }
-	@:from @:noCompletion public static inline function fromStruct(v:B3Vec3Struct):B3Vec3 { return new B3Vec3(v); }
-	@:to @:noCompletion public static inline function toStruct(v:B3Vec3):B3Vec3Struct { return cast v; }
-	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Vec3Native> {
-		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Vec3Native) * size) : null;
-	}
-}*/
-
-    //var nativeWorldDef:B3WorldDefNative = cast worldDef;
-		//worldId = Box3D.createWorld(cpp.RawConstPointer.addressOf(nativeWorldDef));
-
     return binding;
 }
 
@@ -506,12 +564,60 @@ function generateBindingsForCallbacks() {
         hxDef: "",
     };
 
-    for (callback in callbacks) {
-        var hxName = getHxName(callback);
-        binding.hxDef += '\n@:keep @:include("$headerFile") @:native("$callback")';
-        binding.hxDef += '\nextern class ${hxName} {}';
+    for (name => callback in callbacks) {
+        var hxName = getHxName(name);
+        var ret = getHxArgType(callback.retType);
+        //binding.hxDef += '\n@:keep @:include("$headerFile") @:native("$name")';
+        //binding.hxDef += '\nextern class ${hxName} {}';
+
+        var argsTypedef:String = "";
+        var argsFunc:String = "";
+        var argsCall:String = "";
+        for (i in 0...callback.argNames.length) {
+            var argName = callback.argNames[i];
+            var hxArgType = getHxArgType(callback.argTypes[i]);
+
+            var suffix = i < callback.argNames.length-1 ? ", " : "";
+
+            argsTypedef += '$hxArgType -> ';
+            argsFunc += '$argName:$hxArgType$suffix';
+            argsCall += '$argName$suffix';
+        }
+        argsTypedef += ret;
+
+        binding.hxDef += '\ntypedef ${hxName}Func = $argsTypedef;';
+        binding.hxDef += '\ntypedef ${hxName} = cpp.Callable<${hxName}Func>;';
+
+        /*
+        binding.hxDef += '\nclass ${hxName}Wrapper {';
+        binding.hxDef += '\n\tpublic static var currentCallback:${hxName}Func = null;';
+        binding.hxDef += '\n\tpublic static function callback($argsFunc):$ret {';
+        var doReturn = ret != "Void" ? "return " : "";
+        binding.hxDef += '\n\t\t${doReturn}currentCallback($argsCall);';
+        binding.hxDef += '\n\t}';
+        binding.hxDef += '\n}';
+
+        binding.hxDef += '\nabstract ${hxName}(${hxName}Func) from ${hxName}Func to ${hxName}Func {';
+        binding.hxDef += '\n\tpublic inline function new(f:${hxName}Func) { this = f; }';
+        binding.hxDef += '\n\t@:to @:noCompletion public static inline function toCallable(v:${hxName}Func):${hxName}Callable {';
+        binding.hxDef += '\n\t\tif (v == null) return null;';
+        binding.hxDef += '\n\t\t${hxName}Wrapper.currentCallback = v;';
+        binding.hxDef += '\n\t\treturn cpp.Function.fromStaticFunction(${hxName}Wrapper.callback);';
+        binding.hxDef += '\n\t}';
+        binding.hxDef += '\n}\n';
+        */
     }
 
+    return binding;
+}
+
+function generateBindingForOpaqueStruct(name:String) {
+    var binding:Binding = {
+        hxDef: "",
+    };
+    var hxName = getHxName(name);
+    binding.hxDef += '\n@:keep @:include("$headerFile") @:native("$name")';
+    binding.hxDef += '\nextern class ${hxName} {}';
     return binding;
 }
 
@@ -531,7 +637,7 @@ function getHxArgType(t:String) {
         t = t.substring(7, t.length);
     }
 
-    if (callbacks.contains(t)) {
+    if (callbacks.exists(t)) {
         return getHxName(t);
     }
 

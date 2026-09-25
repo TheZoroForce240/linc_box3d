@@ -1,35 +1,27 @@
 package box3d;
-// base.h
-// Skipped Function: void b3SetAllocator
-// Skipped Function: void b3SetAssertFcn
-// Skipped Function: int b3InternalAssert
-// Skipped Function: void b3SetLogFcn
-// types.h
-// Skipped Struct: b3MeshNode
-// Skipped Struct: b3DebugDraw
-// id.h
-// box3d.h
-// Skipped Function: const uint8_t* b3Recording_GetData
-// Skipped Function: const b3HullData* b3Shape_GetHull
-// Skipped Function: const b3HeightFieldData* b3Shape_GetHeightField
-// collision.h
-// Skipped Function: const b3SurfaceMaterial* b3GetCompoundMaterials
-// Skipped Function: const b3HullVertex* b3GetHullVertices
-// Skipped Function: const b3Vec3* b3GetHullPoints
-// Skipped Function: const b3HullHalfEdge* b3GetHullEdges
-// Skipped Function: const b3Plane* b3GetHullPlanes
-// Skipped Function: const b3HullFace* b3GetHullFaces
-// Skipped Function: const float* b3GetHullSoaVertices
-// Skipped Function: const float* b3GetHullSoaNormals
-// Skipped Function: const b3MeshNode* b3GetMeshNodes
-// Skipped Function: const b3Vec3* b3GetMeshVertices
-// Skipped Function: const b3MeshTriangle* b3GetMeshTriangles
-// Skipped Function: const uint8_t* b3GetMeshMaterialIndices
-// Skipped Function: const uint8_t* b3GetMeshFlags
-// Skipped Function: const uint16_t* b3GetHeightFieldCompressedHeights
-// Skipped Function: const uint8_t* b3GetHeightFieldMaterialIndices
-// Skipped Function: const uint8_t* b3GetHeightFieldFlags
-// math_functions.h
+
+/*
+
+Some type quirks:
+
+//You should always specifiy the type if possible, B3WorldDef is an abstract and will auto cast when needed
+//It can also be stored in arrays like this (due to casting to being a B3WorldDefStruct/cpp.struct<b3WorldDef> underneath)
+var worldDef:B3WorldDef = Box3D.defaultWorldDef();
+worldDef.gravity.y = -10;
+worldId = Box3D.createWorld(worldDef);
+
+//if you did this worldDef will be B3WorldDefNative and can't auto cast or be stored in arrays, this can sometimes be useful for temp variables as they will be stack allocated
+var worldDef = Box3D.defaultWorldDef();
+worldDef.gravity.y = -10;
+worldId = Box3D.createWorld(worldDef.toPointer()); //you also need to manually cast into a pointer using this function whenever needed
+
+//theres a few cases where you may still need to manually cast due to a members still being native
+Box3D.createHullShape(bodyId, shapeDef, boxHull.base.toPointer());
+
+//Callbacks can only be created using cpp.Function.fromStaticFunction and only work on static functions
+worldDef.frictionCallback = cpp.Function.fromStaticFunction(PlayState.frictionCallback);
+
+*/
 
 @:keep @:structAccess @:include("linc_box3d.h") @:native("b3Vec3")
 extern class B3Vec3Native {
@@ -259,6 +251,62 @@ abstract B3CastOutput(B3CastOutputStruct) from B3CastOutputStruct to B3CastOutpu
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CastOutputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CastOutputNative) * size) : null;
+	}
+}
+
+
+@:keep @:structAccess @:include("linc_box3d.h") @:native("b3DebugDraw")
+extern class B3DebugDrawNative {
+	public var DrawShapeFcn:B3DebugDrawDrawShapeFcn;
+	public var DrawSegmentFcn:B3DebugDrawDrawSegmentFcn;
+	public var DrawTransformFcn:B3DebugDrawDrawTransformFcn;
+	public var DrawPointFcn:B3DebugDrawDrawPointFcn;
+	public var DrawSphereFcn:B3DebugDrawDrawSphereFcn;
+	public var DrawCapsuleFcn:B3DebugDrawDrawCapsuleFcn;
+	public var DrawBoundsFcn:B3DebugDrawDrawBoundsFcn;
+	public var DrawBoxFcn:B3DebugDrawDrawBoxFcn;
+	public var DrawStringFcn:B3DebugDrawDrawStringFcn;
+	public var drawingBounds:B3AABBNative;
+	public var forceScale:cpp.Float32;
+	public var jointScale:cpp.Float32;
+	public var drawShapes:Bool;
+	public var drawJoints:Bool;
+	public var drawJointExtras:Bool;
+	public var drawBounds:Bool;
+	public var drawMass:Bool;
+	public var drawSleep:Bool;
+	public var drawBodyNames:Bool;
+	public var drawContacts:Bool;
+	public var drawAnchorA:Bool;
+	public var drawGraphColors:Bool;
+	public var drawContactFeatures:Bool;
+	public var drawContactNormals:Bool;
+	public var drawContactForces:Bool;
+	public var drawIslands:Bool;
+	public var context:cpp.RawPointer<Void>;
+	public inline function toPointer():cpp.RawPointer<B3DebugDrawNative> {
+		return cpp.RawPointer.addressOf(cast this);
+	}
+}
+@:keep @:include("linc_box3d.h") @:native("cpp.Reference<b3DebugDraw>")
+extern class B3DebugDrawRef extends B3DebugDrawNative {}
+@:keep @:include("linc_box3d.h") @:native("cpp.Struct<b3DebugDraw>")
+extern class B3DebugDrawStruct extends B3DebugDrawRef {}
+
+@:forward() @:transitive
+abstract B3DebugDraw(B3DebugDrawStruct) from B3DebugDrawStruct to B3DebugDrawStruct {
+	overload extern public inline function new() { this = untyped __cpp__("b3DebugDraw()"); }
+	overload extern public inline function new(v:B3DebugDrawStruct) { this = v; }
+	overload extern public inline function new(v:B3DebugDrawNative) { this = cast v; }
+
+	@:from @:noCompletion public static inline function fromNative(v:B3DebugDrawNative):B3DebugDraw { return new B3DebugDraw(v); }
+	@:to @:noCompletion public static inline function toNative(v:B3DebugDraw):B3DebugDrawNative { return cast v; }
+	@:from @:noCompletion public static inline function fromStruct(v:B3DebugDrawStruct):B3DebugDraw { return new B3DebugDraw(v); }
+	@:to @:noCompletion public static inline function toStruct(v:B3DebugDraw):B3DebugDrawStruct { return cast v; }
+	@:to @:noCompletion public static inline function autoToPointer(v:B3DebugDraw):cpp.RawPointer<B3DebugDrawNative> { return v.toPointer(); }
+
+	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DebugDrawNative> {
+		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DebugDrawNative) * size) : null;
 	}
 }
 
@@ -4184,50 +4232,68 @@ extern enum abstract B3RecQueryType(Int) from Int to Int {
 	@:native("b3_recQueryCastMover") public static var recQueryCastMover:Int;
 	@:native("b3_recQueryCollideMover") public static var recQueryCollideMover:Int;
 }
-@:keep @:include("linc_box3d.h") @:native("b3TaskCallback")
-extern class B3TaskCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3EnqueueTaskCallback")
-extern class B3EnqueueTaskCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3FinishTaskCallback")
-extern class B3FinishTaskCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3CreateDebugShapeCallback")
-extern class B3CreateDebugShapeCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3DestroyDebugShapeCallback")
-extern class B3DestroyDebugShapeCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3FrictionCallback")
-extern class B3FrictionCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3RestitutionCallback")
-extern class B3RestitutionCallback {}
-@:keep @:include("linc_box3d.h") @:native("b3CustomFilterFcn")
-extern class B3CustomFilterFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3PreSolveFcn")
-extern class B3PreSolveFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3OverlapResultFcn")
-extern class B3OverlapResultFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3CastResultFcn")
-extern class B3CastResultFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3TreeQueryCallbackFcn")
-extern class B3TreeQueryCallbackFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3TreeQueryClosestCallbackFcn")
-extern class B3TreeQueryClosestCallbackFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3TreeBoxCastCallbackFcn")
-extern class B3TreeBoxCastCallbackFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3TreeRayCastCallbackFcn")
-extern class B3TreeRayCastCallbackFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3PlaneResultFcn")
-extern class B3PlaneResultFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3MoverFilterFcn")
-extern class B3MoverFilterFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3CompoundQueryFcn")
-extern class B3CompoundQueryFcn {}
-@:keep @:include("linc_box3d.h") @:native("b3MeshQueryFcn")
-extern class B3MeshQueryFcn {}
+typedef B3DebugDrawDrawBoxFcnFunc = B3Vec3Native -> B3WorldTransformNative -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawBoxFcn = cpp.Callable<B3DebugDrawDrawBoxFcnFunc>;
+typedef B3FrictionCallbackFunc = cpp.Float32 -> cpp.UInt64 -> cpp.Float32 -> cpp.UInt64 -> cpp.Float32;
+typedef B3FrictionCallback = cpp.Callable<B3FrictionCallbackFunc>;
+typedef B3CreateDebugShapeCallbackFunc = cpp.RawConstPointer<B3DebugShapeNative> -> cpp.RawPointer<Void> -> cpp.RawPointer<Void>;
+typedef B3CreateDebugShapeCallback = cpp.Callable<B3CreateDebugShapeCallbackFunc>;
+typedef B3TreeBoxCastCallbackFcnFunc = cpp.RawConstPointer<B3BoxCastInputNative> -> Int -> cpp.UInt64 -> cpp.RawPointer<Void> -> cpp.Float32;
+typedef B3TreeBoxCastCallbackFcn = cpp.Callable<B3TreeBoxCastCallbackFcnFunc>;
+typedef B3EnqueueTaskCallbackFunc = B3TaskCallback -> cpp.RawPointer<Void> -> cpp.RawPointer<Void> -> cpp.ConstCharStar -> cpp.RawPointer<Void>;
+typedef B3EnqueueTaskCallback = cpp.Callable<B3EnqueueTaskCallbackFunc>;
+typedef B3DebugDrawDrawBoundsFcnFunc = B3AABBNative -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawBoundsFcn = cpp.Callable<B3DebugDrawDrawBoundsFcnFunc>;
+typedef B3TreeRayCastCallbackFcnFunc = cpp.RawConstPointer<B3RayCastInputNative> -> Int -> cpp.UInt64 -> cpp.RawPointer<Void> -> cpp.Float32;
+typedef B3TreeRayCastCallbackFcn = cpp.Callable<B3TreeRayCastCallbackFcnFunc>;
+typedef B3TreeQueryCallbackFcnFunc = Int -> cpp.UInt64 -> cpp.RawPointer<Void> -> Bool;
+typedef B3TreeQueryCallbackFcn = cpp.Callable<B3TreeQueryCallbackFcnFunc>;
+typedef B3CastResultFcnFunc = B3ShapeIdNative -> B3PosNative -> B3Vec3Native -> cpp.Float32 -> cpp.UInt64 -> Int -> Int -> cpp.RawPointer<Void> -> cpp.Float32;
+typedef B3CastResultFcn = cpp.Callable<B3CastResultFcnFunc>;
+typedef B3PreSolveFcnFunc = B3ShapeIdNative -> B3ShapeIdNative -> B3PosNative -> B3Vec3Native -> cpp.RawPointer<Void> -> Bool;
+typedef B3PreSolveFcn = cpp.Callable<B3PreSolveFcnFunc>;
+typedef B3CompoundQueryFcnFunc = cpp.RawConstPointer<B3CompoundDataNative> -> Int -> cpp.RawPointer<Void> -> Bool;
+typedef B3CompoundQueryFcn = cpp.Callable<B3CompoundQueryFcnFunc>;
+typedef B3DebugDrawDrawStringFcnFunc = B3PosNative -> cpp.ConstCharStar -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawStringFcn = cpp.Callable<B3DebugDrawDrawStringFcnFunc>;
+typedef B3MeshQueryFcnFunc = B3Vec3Native -> B3Vec3Native -> B3Vec3Native -> Int -> cpp.RawPointer<Void> -> Bool;
+typedef B3MeshQueryFcn = cpp.Callable<B3MeshQueryFcnFunc>;
+typedef B3CustomFilterFcnFunc = B3ShapeIdNative -> B3ShapeIdNative -> cpp.RawPointer<Void> -> Bool;
+typedef B3CustomFilterFcn = cpp.Callable<B3CustomFilterFcnFunc>;
+typedef B3DebugDrawDrawSegmentFcnFunc = B3PosNative -> B3PosNative -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawSegmentFcn = cpp.Callable<B3DebugDrawDrawSegmentFcnFunc>;
+typedef B3MoverFilterFcnFunc = B3ShapeIdNative -> cpp.RawPointer<Void> -> Bool;
+typedef B3MoverFilterFcn = cpp.Callable<B3MoverFilterFcnFunc>;
+typedef B3PlaneResultFcnFunc = B3ShapeIdNative -> cpp.RawConstPointer<B3PlaneResultNative> -> Int -> cpp.RawPointer<Void> -> Bool;
+typedef B3PlaneResultFcn = cpp.Callable<B3PlaneResultFcnFunc>;
+typedef B3DebugDrawDrawSphereFcnFunc = B3PosNative -> cpp.Float32 -> B3HexColor -> cpp.Float32 -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawSphereFcn = cpp.Callable<B3DebugDrawDrawSphereFcnFunc>;
+typedef B3DebugDrawDrawShapeFcnFunc = cpp.RawPointer<Void> -> B3WorldTransformNative -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawShapeFcn = cpp.Callable<B3DebugDrawDrawShapeFcnFunc>;
+typedef B3DebugDrawDrawPointFcnFunc = B3PosNative -> cpp.Float32 -> B3HexColor -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawPointFcn = cpp.Callable<B3DebugDrawDrawPointFcnFunc>;
+typedef B3TaskCallbackFunc = cpp.RawPointer<Void> -> Void;
+typedef B3TaskCallback = cpp.Callable<B3TaskCallbackFunc>;
+typedef B3DestroyDebugShapeCallbackFunc = cpp.RawPointer<Void> -> cpp.RawPointer<Void> -> Void;
+typedef B3DestroyDebugShapeCallback = cpp.Callable<B3DestroyDebugShapeCallbackFunc>;
+typedef B3TreeQueryClosestCallbackFcnFunc = cpp.Float32 -> Int -> cpp.UInt64 -> cpp.RawPointer<Void> -> cpp.Float32;
+typedef B3TreeQueryClosestCallbackFcn = cpp.Callable<B3TreeQueryClosestCallbackFcnFunc>;
+typedef B3DebugDrawDrawCapsuleFcnFunc = B3PosNative -> B3PosNative -> cpp.Float32 -> B3HexColor -> cpp.Float32 -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawCapsuleFcn = cpp.Callable<B3DebugDrawDrawCapsuleFcnFunc>;
+typedef B3RestitutionCallbackFunc = cpp.Float32 -> cpp.UInt64 -> cpp.Float32 -> cpp.UInt64 -> cpp.Float32;
+typedef B3RestitutionCallback = cpp.Callable<B3RestitutionCallbackFunc>;
+typedef B3FinishTaskCallbackFunc = cpp.RawPointer<Void> -> cpp.RawPointer<Void> -> Void;
+typedef B3FinishTaskCallback = cpp.Callable<B3FinishTaskCallbackFunc>;
+typedef B3OverlapResultFcnFunc = B3ShapeIdNative -> cpp.RawPointer<Void> -> Bool;
+typedef B3OverlapResultFcn = cpp.Callable<B3OverlapResultFcnFunc>;
+typedef B3DebugDrawDrawTransformFcnFunc = B3WorldTransformNative -> cpp.RawPointer<Void> -> Void;
+typedef B3DebugDrawDrawTransformFcn = cpp.Callable<B3DebugDrawDrawTransformFcnFunc>;
+
 @:keep @:include("linc_box3d.h") @:native("b3Recording")
 extern class B3Recording {}
-@:keep @:include("linc_box3d.h") @:native("B3RecPlayer")
+
+@:keep @:include("linc_box3d.h") @:native("b3RecPlayer")
 extern class B3RecPlayer {}
-@:keep @:include("linc_box3d.h") @:native("B3DebugDraw")
-extern class B3DebugDraw {}
 
 @:keep
 @:include("linc_box3d.h")
@@ -4291,7 +4357,7 @@ extern class Box3D
 	@:native("b3GetGraphColor")
 	public static function getGraphColor(index:Int):B3HexColor;
 	@:native("b3DefaultDebugDraw")
-	public static function defaultDebugDraw():B3DebugDraw;
+	public static function defaultDebugDraw():B3DebugDrawNative;
 	@:native("b3MakeDebugColor")
 	public static function makeDebugColor(rgb:B3HexColor, material:B3DebugMaterial):cpp.UInt32;
 	@:native("b3CreateWorld")
@@ -4307,7 +4373,7 @@ extern class Box3D
 	@:native("b3World_Step")
 	public static function world_Step(worldId:B3WorldIdNative, timeStep:cpp.Float32, subStepCount:Int):Void;
 	@:native("b3World_Draw")
-	public static function world_Draw(worldId:B3WorldIdNative, draw:cpp.RawPointer<B3DebugDraw>, maskBits:cpp.UInt64):Void;
+	public static function world_Draw(worldId:B3WorldIdNative, draw:cpp.RawPointer<B3DebugDrawNative>, maskBits:cpp.UInt64):Void;
 	@:native("b3World_GetBounds")
 	public static function world_GetBounds(worldId:B3WorldIdNative):B3AABBNative;
 	@:native("b3World_GetBodyEvents")
@@ -4401,19 +4467,21 @@ extern class Box3D
 	@:native("b3World_EnableSpeculative")
 	public static function world_EnableSpeculative(worldId:B3WorldIdNative, flag:Bool):Void;
 	@:native("b3CreateRecording")
-	public static function createRecording(byteCapacity:Int):B3Recording;
+	public static function createRecording(byteCapacity:Int):cpp.RawPointer<B3Recording>;
 	@:native("b3DestroyRecording")
-	public static function destroyRecording(recording:B3Recording):Void;
+	public static function destroyRecording(recording:cpp.RawPointer<B3Recording>):Void;
+	@:native("b3Recording_GetData")
+	public static function recording_GetData(recording:cpp.RawConstPointer<B3Recording>):cpp.RawConstPointer<cpp.UInt8>;
 	@:native("b3Recording_GetSize")
-	public static function recording_GetSize(recording:B3Recording):Int;
+	public static function recording_GetSize(recording:cpp.RawConstPointer<B3Recording>):Int;
 	@:native("b3World_StartRecording")
-	public static function world_StartRecording(worldId:B3WorldIdNative, recording:B3Recording):Void;
+	public static function world_StartRecording(worldId:B3WorldIdNative, recording:cpp.RawPointer<B3Recording>):Void;
 	@:native("b3World_StopRecording")
 	public static function world_StopRecording(worldId:B3WorldIdNative):Void;
 	@:native("b3SaveRecordingToFile")
-	public static function saveRecordingToFile(recording:B3Recording, path:cpp.ConstCharStar):Bool;
+	public static function saveRecordingToFile(recording:cpp.RawConstPointer<B3Recording>, path:cpp.ConstCharStar):Bool;
 	@:native("b3LoadRecordingFromFile")
-	public static function loadRecordingFromFile(path:cpp.ConstCharStar):B3Recording;
+	public static function loadRecordingFromFile(path:cpp.ConstCharStar):cpp.RawPointer<B3Recording>;
 	@:native("b3ValidateReplay")
 	public static function validateReplay(data:cpp.RawConstPointer<Void>, size:Int, workerCount:Int):Bool;
 	@:native("b3CreatePlayer")
@@ -4463,7 +4531,7 @@ extern class Box3D
 	@:native("b3RecPlayer_SetDebugShapeCallbacks")
 	public static function recPlayer_SetDebugShapeCallbacks(player:cpp.RawPointer<B3RecPlayer>, createDebugShape:B3CreateDebugShapeCallback, destroyDebugShape:B3DestroyDebugShapeCallback, context:cpp.RawPointer<Void>):Void;
 	@:native("b3RecPlayer_DrawFrameQueries")
-	public static function recPlayer_DrawFrameQueries(player:cpp.RawPointer<B3RecPlayer>, draw:cpp.RawPointer<B3DebugDraw>, queryIndex:Int, selectedIndex:Int):Void;
+	public static function recPlayer_DrawFrameQueries(player:cpp.RawPointer<B3RecPlayer>, draw:cpp.RawPointer<B3DebugDrawNative>, queryIndex:Int, selectedIndex:Int):Void;
 	@:native("b3RecPlayer_GetFrameQueryCount")
 	public static function recPlayer_GetFrameQueryCount(player:cpp.RawConstPointer<B3RecPlayer>):Int;
 	@:native("b3RecPlayer_GetFrameQuery")
@@ -4712,8 +4780,12 @@ extern class Box3D
 	public static function shape_GetSphere(shapeId:B3ShapeIdNative):B3SphereNative;
 	@:native("b3Shape_GetCapsule")
 	public static function shape_GetCapsule(shapeId:B3ShapeIdNative):B3CapsuleNative;
+	@:native("b3Shape_GetHull")
+	public static function shape_GetHull(shapeId:B3ShapeIdNative):cpp.RawConstPointer<B3HullDataNative>;
 	@:native("b3Shape_GetMesh")
 	public static function shape_GetMesh(shapeId:B3ShapeIdNative):B3MeshNative;
+	@:native("b3Shape_GetHeightField")
+	public static function shape_GetHeightField(shapeId:B3ShapeIdNative):cpp.RawConstPointer<B3HeightFieldDataNative>;
 	@:native("b3Shape_SetSphere")
 	public static function shape_SetSphere(shapeId:B3ShapeIdNative, sphere:cpp.RawConstPointer<B3SphereNative>):Void;
 	@:native("b3Shape_SetCapsule")
@@ -5248,6 +5320,8 @@ extern class Box3D
 	public static function getCompoundMesh(compound:cpp.RawConstPointer<B3CompoundDataNative>, index:Int):B3CompoundMeshNative;
 	@:native("b3GetCompoundSphere")
 	public static function getCompoundSphere(compound:cpp.RawConstPointer<B3CompoundDataNative>, index:Int):B3CompoundSphereNative;
+	@:native("b3GetCompoundMaterials")
+	public static function getCompoundMaterials(compound:cpp.RawConstPointer<B3CompoundDataNative>):cpp.RawConstPointer<B3SurfaceMaterialNative>;
 	@:native("b3CreateCompound")
 	public static function createCompound(def:cpp.RawConstPointer<B3CompoundDefNative>):cpp.RawPointer<B3CompoundDataNative>;
 	@:native("b3DestroyCompound")
@@ -5352,6 +5426,34 @@ extern class Box3D
 	public static function dynamicTree_GetUserData(tree:cpp.RawConstPointer<B3DynamicTreeNative>, proxyId:Int):cpp.UInt64;
 	@:native("b3DynamicTree_GetAABB")
 	public static function dynamicTree_GetAABB(tree:cpp.RawConstPointer<B3DynamicTreeNative>, proxyId:Int):B3AABBNative;
+	@:native("b3GetHullVertices")
+	public static function getHullVertices(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<B3HullVertexNative>;
+	@:native("b3GetHullPoints")
+	public static function getHullPoints(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<B3Vec3Native>;
+	@:native("b3GetHullEdges")
+	public static function getHullEdges(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<B3HullHalfEdgeNative>;
+	@:native("b3GetHullPlanes")
+	public static function getHullPlanes(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<B3PlaneNative>;
+	@:native("b3GetHullFaces")
+	public static function getHullFaces(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<B3HullFaceNative>;
+	@:native("b3GetHullSoaVertices")
+	public static function getHullSoaVertices(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<cpp.Float32>;
+	@:native("b3GetHullSoaNormals")
+	public static function getHullSoaNormals(hull:cpp.RawConstPointer<B3HullDataNative>):cpp.RawConstPointer<cpp.Float32>;
+	@:native("b3GetMeshVertices")
+	public static function getMeshVertices(mesh:cpp.RawConstPointer<B3MeshDataNative>):cpp.RawConstPointer<B3Vec3Native>;
+	@:native("b3GetMeshTriangles")
+	public static function getMeshTriangles(mesh:cpp.RawConstPointer<B3MeshDataNative>):cpp.RawConstPointer<B3MeshTriangleNative>;
+	@:native("b3GetMeshMaterialIndices")
+	public static function getMeshMaterialIndices(mesh:cpp.RawConstPointer<B3MeshDataNative>):cpp.RawConstPointer<cpp.UInt8>;
+	@:native("b3GetMeshFlags")
+	public static function getMeshFlags(mesh:cpp.RawConstPointer<B3MeshDataNative>):cpp.RawConstPointer<cpp.UInt8>;
+	@:native("b3GetHeightFieldCompressedHeights")
+	public static function getHeightFieldCompressedHeights(hf:cpp.RawConstPointer<B3HeightFieldDataNative>):cpp.RawConstPointer<cpp.UInt16>;
+	@:native("b3GetHeightFieldMaterialIndices")
+	public static function getHeightFieldMaterialIndices(hf:cpp.RawConstPointer<B3HeightFieldDataNative>):cpp.RawConstPointer<cpp.UInt8>;
+	@:native("b3GetHeightFieldFlags")
+	public static function getHeightFieldFlags(hf:cpp.RawConstPointer<B3HeightFieldDataNative>):cpp.RawConstPointer<cpp.UInt8>;
 	@:native("b3Atan2")
 	public static function atan2(y:cpp.Float32, x:cpp.Float32):cpp.Float32;
 	@:native("b3ComputeCosSin")
