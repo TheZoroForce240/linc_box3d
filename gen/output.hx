@@ -370,6 +370,8 @@ abstract B3Capacity(B3CapacityStruct) from B3CapacityStruct to B3CapacityStruct 
 extern class B3WorldDefNative {
 	public var gravity:B3Vec3Native;
 	public var restitutionThreshold:cpp.Float32;
+	public var restitutionIterations:Int;
+	public var enableRestitutionPropagation:Bool;
 	public var hitEventThreshold:cpp.Float32;
 	public var contactHertz:cpp.Float32;
 	public var contactDampingRatio:cpp.Float32;
@@ -462,6 +464,7 @@ extern class B3BodyDefNative {
 	public var angularDamping:cpp.Float32;
 	public var gravityScale:cpp.Float32;
 	public var sleepThreshold:cpp.Float32;
+	public var safetyFactor:cpp.Float32;
 	public var name:cpp.ConstCharStar;
 	public var userData:cpp.RawPointer<Void>;
 	public var motionLocks:B3MotionLocksNative;
@@ -628,7 +631,7 @@ extern class B3ProfileNative {
 	public var solveImpulses:cpp.Float32;
 	public var integratePositions:cpp.Float32;
 	public var relaxImpulses:cpp.Float32;
-	public var applyRestitution:cpp.Float32;
+	public var restitution:cpp.Float32;
 	public var storeImpulses:cpp.Float32;
 	public var splitIslands:cpp.Float32;
 	public var transforms:cpp.Float32;
@@ -668,6 +671,7 @@ abstract B3Profile(B3ProfileStruct) from B3ProfileStruct to B3ProfileStruct {
 
 @:keep @:structAccess @:include("linc_box3d.h") @:native("b3Counters")
 extern class B3CountersNative {
+	public var byteCount:cpp.Int64;
 	public var bodyCount:Int;
 	public var shapeCount:Int;
 	public var contactCount:Int;
@@ -679,7 +683,6 @@ extern class B3CountersNative {
 	public var treeHeight:Int;
 	public var satCallCount:Int;
 	public var satCacheHitCount:Int;
-	public var byteCount:Int;
 	public var taskCount:Int;
 	public var colorCounts:cpp.RawPointer<Int>;
 	public var manifoldCounts:cpp.RawPointer<Int>;
@@ -2075,47 +2078,12 @@ abstract B3TOIOutput(B3TOIOutputStruct) from B3TOIOutputStruct to B3TOIOutputStr
 }
 
 
-@:keep @:structAccess @:include("linc_box3d.h") @:native("b3TreeNodeChildren")
-extern class B3TreeNodeChildrenNative {
-	public var child1:Int;
-	public var child2:Int;
-	public inline function toPointer():cpp.RawPointer<B3TreeNodeChildrenNative> {
-		return cpp.RawPointer.addressOf(cast this);
-	}
-}
-@:keep @:include("linc_box3d.h") @:native("cpp.Reference<b3TreeNodeChildren>")
-extern class B3TreeNodeChildrenRef extends B3TreeNodeChildrenNative {}
-@:keep @:include("linc_box3d.h") @:native("cpp.Struct<b3TreeNodeChildren>")
-extern class B3TreeNodeChildrenStruct extends B3TreeNodeChildrenRef {}
-
-@:forward() @:transitive
-abstract B3TreeNodeChildren(B3TreeNodeChildrenStruct) from B3TreeNodeChildrenStruct to B3TreeNodeChildrenStruct {
-	overload extern public inline function new() { this = untyped __cpp__("b3TreeNodeChildren()"); }
-	overload extern public inline function new(v:B3TreeNodeChildrenStruct) { this = v; }
-	overload extern public inline function new(v:B3TreeNodeChildrenNative) { this = cast v; }
-
-	@:from @:noCompletion public static inline function fromNative(v:B3TreeNodeChildrenNative):B3TreeNodeChildren { return new B3TreeNodeChildren(v); }
-	@:to @:noCompletion public static inline function toNative(v:B3TreeNodeChildren):B3TreeNodeChildrenNative { return cast v; }
-	@:from @:noCompletion public static inline function fromStruct(v:B3TreeNodeChildrenStruct):B3TreeNodeChildren { return new B3TreeNodeChildren(v); }
-	@:to @:noCompletion public static inline function toStruct(v:B3TreeNodeChildren):B3TreeNodeChildrenStruct { return cast v; }
-	@:to @:noCompletion public static inline function autoToPointer(v:B3TreeNodeChildren):cpp.RawPointer<B3TreeNodeChildrenNative> { return v.toPointer(); }
-
-	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TreeNodeChildrenNative> {
-		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TreeNodeChildrenNative) * size) : null;
-	}
-}
-
-
 @:keep @:structAccess @:include("linc_box3d.h") @:native("b3TreeNode")
 extern class B3TreeNodeNative {
 	public var aabb:B3AABBNative;
-	public var categoryBits:cpp.UInt64;
-	public var children:B3TreeNodeChildrenNative;
-	public var userData:cpp.UInt64;
-	public var parent:Int;
-	public var next:Int;
-	public var height:cpp.UInt16;
-	public var flags:cpp.UInt16;
+	public var flagIndex:cpp.UInt32;
+	public var height:Int;
+	public var shapeIndex:Int;
 	public inline function toPointer():cpp.RawPointer<B3TreeNodeNative> {
 		return cpp.RawPointer.addressOf(cast this);
 	}
@@ -2143,20 +2111,59 @@ abstract B3TreeNode(B3TreeNodeStruct) from B3TreeNodeStruct to B3TreeNodeStruct 
 }
 
 
+@:keep @:structAccess @:include("linc_box3d.h") @:native("b3TreeProxy")
+extern class B3TreeProxyNative {
+	public var userData:cpp.UInt64;
+	public var categoryBits:cpp.UInt64;
+	public var node:Int;
+	public var next:Int;
+	public inline function toPointer():cpp.RawPointer<B3TreeProxyNative> {
+		return cpp.RawPointer.addressOf(cast this);
+	}
+}
+@:keep @:include("linc_box3d.h") @:native("cpp.Reference<b3TreeProxy>")
+extern class B3TreeProxyRef extends B3TreeProxyNative {}
+@:keep @:include("linc_box3d.h") @:native("cpp.Struct<b3TreeProxy>")
+extern class B3TreeProxyStruct extends B3TreeProxyRef {}
+
+@:forward() @:transitive
+abstract B3TreeProxy(B3TreeProxyStruct) from B3TreeProxyStruct to B3TreeProxyStruct {
+	overload extern public inline function new() { this = untyped __cpp__("b3TreeProxy()"); }
+	overload extern public inline function new(v:B3TreeProxyStruct) { this = v; }
+	overload extern public inline function new(v:B3TreeProxyNative) { this = cast v; }
+
+	@:from @:noCompletion public static inline function fromNative(v:B3TreeProxyNative):B3TreeProxy { return new B3TreeProxy(v); }
+	@:to @:noCompletion public static inline function toNative(v:B3TreeProxy):B3TreeProxyNative { return cast v; }
+	@:from @:noCompletion public static inline function fromStruct(v:B3TreeProxyStruct):B3TreeProxy { return new B3TreeProxy(v); }
+	@:to @:noCompletion public static inline function toStruct(v:B3TreeProxy):B3TreeProxyStruct { return cast v; }
+	@:to @:noCompletion public static inline function autoToPointer(v:B3TreeProxy):cpp.RawPointer<B3TreeProxyNative> { return v.toPointer(); }
+
+	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TreeProxyNative> {
+		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TreeProxyNative) * size) : null;
+	}
+}
+
+
 @:keep @:structAccess @:include("linc_box3d.h") @:native("b3DynamicTree")
 extern class B3DynamicTreeNative {
 	public var version:cpp.UInt64;
 	public var nodes:cpp.RawPointer<B3TreeNodeNative>;
-	public var root:Int;
-	public var nodeCount:Int;
+	public var parents:cpp.RawPointer<Int>;
+	public var proxies:cpp.RawPointer<B3TreeProxyNative>;
+	public var nodeEnd:Int;
 	public var nodeCapacity:Int;
+	public var pairFreeList:Int;
 	public var proxyCount:Int;
-	public var freeList:Int;
+	public var proxyCapacity:Int;
+	public var proxyFreeList:Int;
+	public var swapNodes:cpp.RawPointer<B3TreeNodeNative>;
 	public var leafIndices:cpp.RawPointer<Int>;
+	public var leafNodes:cpp.RawPointer<B3TreeNodeNative>;
 	public var leafBoxes:cpp.RawPointer<B3AABBNative>;
 	public var leafCenters:cpp.RawPointer<B3Vec3Native>;
 	public var binIndices:cpp.RawPointer<Int>;
 	public var rebuildCapacity:Int;
+	public var dfsOrdered:Bool;
 	public inline function toPointer():cpp.RawPointer<B3DynamicTreeNative> {
 		return cpp.RawPointer.addressOf(cast this);
 	}
@@ -3055,6 +3062,7 @@ extern class B3CompoundDataNative {
 	public var version:cpp.UInt64;
 	public var byteCount:Int;
 	public var nodeOffset:Int;
+	public var proxyOffset:Int;
 	public var tree:B3DynamicTreeNative;
 	public var materialOffset:Int;
 	public var materialCount:Int;
@@ -3263,10 +3271,10 @@ extern class B3ManifoldPointNative {
 	public var anchorA:B3Vec3Native;
 	public var anchorB:B3Vec3Native;
 	public var separation:cpp.Float32;
-	public var baseSeparation:cpp.Float32;
 	public var normalImpulse:cpp.Float32;
 	public var totalNormalImpulse:cpp.Float32;
 	public var normalVelocity:cpp.Float32;
+	public var baseSeparation:cpp.Float32;
 	public var featureId:cpp.UInt32;
 	public var triangleIndex:Int;
 	public var persisted:Bool;
@@ -3775,6 +3783,38 @@ abstract B3RecQueryHit(B3RecQueryHitStruct) from B3RecQueryHitStruct to B3RecQue
 }
 
 
+@:keep @:structAccess @:include("linc_box3d.h") @:native("b3Point2D")
+extern class B3Point2DNative {
+	public var p:B3Vec2Native;
+	public var separation:cpp.Float32;
+	public var originalIndex:Int;
+	public inline function toPointer():cpp.RawPointer<B3Point2DNative> {
+		return cpp.RawPointer.addressOf(cast this);
+	}
+}
+@:keep @:include("linc_box3d.h") @:native("cpp.Reference<b3Point2D>")
+extern class B3Point2DRef extends B3Point2DNative {}
+@:keep @:include("linc_box3d.h") @:native("cpp.Struct<b3Point2D>")
+extern class B3Point2DStruct extends B3Point2DRef {}
+
+@:forward() @:transitive
+abstract B3Point2D(B3Point2DStruct) from B3Point2DStruct to B3Point2DStruct {
+	overload extern public inline function new() { this = untyped __cpp__("b3Point2D()"); }
+	overload extern public inline function new(v:B3Point2DStruct) { this = v; }
+	overload extern public inline function new(v:B3Point2DNative) { this = cast v; }
+
+	@:from @:noCompletion public static inline function fromNative(v:B3Point2DNative):B3Point2D { return new B3Point2D(v); }
+	@:to @:noCompletion public static inline function toNative(v:B3Point2D):B3Point2DNative { return cast v; }
+	@:from @:noCompletion public static inline function fromStruct(v:B3Point2DStruct):B3Point2D { return new B3Point2D(v); }
+	@:to @:noCompletion public static inline function toStruct(v:B3Point2D):B3Point2DStruct { return cast v; }
+	@:to @:noCompletion public static inline function autoToPointer(v:B3Point2D):cpp.RawPointer<B3Point2DNative> { return v.toPointer(); }
+
+	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Point2DNative> {
+		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Point2DNative) * size) : null;
+	}
+}
+
+
 @:keep @:structAccess @:include("linc_box3d.h") @:native("b3Vec2")
 extern class B3Vec2Native {
 	public var x:cpp.Float32;
@@ -4002,13 +4042,6 @@ extern enum abstract B3TOIState(Int) from Int to Int {
 	@:native("b3_toiStateOverlapped") public static var toiStateOverlapped:Int;
 	@:native("b3_toiStateHit") public static var toiStateHit:Int;
 	@:native("b3_toiStateSeparated") public static var toiStateSeparated:Int;
-}
-
-@:keep @:include("linc_box3d.h")
-extern enum abstract B3TreeNodeFlags(Int) from Int to Int {
-	@:native("b3_allocatedNode") public static var allocatedNode:Int;
-	@:native("b3_enlargedNode") public static var enlargedNode:Int;
-	@:native("b3_leafNode") public static var leafNode:Int;
 }
 
 @:keep @:include("linc_box3d.h")
@@ -4294,11 +4327,13 @@ extern class Box3D
 {
 
 	@:native("b3GetByteCount")
-	public static function getByteCount():Int;
+	public static function getByteCount():cpp.Int64;
 	@:native("b3GetVersion")
 	public static function getVersion():B3VersionNative;
 	@:native("b3IsDoublePrecision")
 	public static function isDoublePrecision():Bool;
+	@:native("b3GetMaxManifoldPoints")
+	public static function getMaxManifoldPoints():Int;
 	@:native("b3GetTicks")
 	public static function getTicks():cpp.UInt64;
 	@:native("b3GetMilliseconds")
@@ -4399,6 +4434,14 @@ extern class Box3D
 	public static function world_SetRestitutionThreshold(worldId:B3WorldIdNative, value:cpp.Float32):Void;
 	@:native("b3World_GetRestitutionThreshold")
 	public static function world_GetRestitutionThreshold(worldId:B3WorldIdNative):cpp.Float32;
+	@:native("b3World_SetRestitutionIterations")
+	public static function world_SetRestitutionIterations(worldId:B3WorldIdNative, iterations:Int):Void;
+	@:native("b3World_GetRestitutionIterations")
+	public static function world_GetRestitutionIterations(worldId:B3WorldIdNative):Int;
+	@:native("b3World_EnableRestitutionPropagation")
+	public static function world_EnableRestitutionPropagation(worldId:B3WorldIdNative, flag:Bool):Void;
+	@:native("b3World_IsRestitutionPropagationEnabled")
+	public static function world_IsRestitutionPropagationEnabled(worldId:B3WorldIdNative):Bool;
 	@:native("b3World_SetHitEventThreshold")
 	public static function world_SetHitEventThreshold(worldId:B3WorldIdNative, value:cpp.Float32):Void;
 	@:native("b3World_GetHitEventThreshold")
@@ -4451,8 +4494,6 @@ extern class Box3D
 	public static function world_DumpMemoryStats(worldId:B3WorldIdNative):Void;
 	@:native("b3World_DumpShapeBounds")
 	public static function world_DumpShapeBounds(worldId:B3WorldIdNative, type:B3BodyType):Void;
-	@:native("b3World_RebuildStaticTree")
-	public static function world_RebuildStaticTree(worldId:B3WorldIdNative):Void;
 	@:native("b3World_EnableSpeculative")
 	public static function world_EnableSpeculative(worldId:B3WorldIdNative, flag:Bool):Void;
 	@:native("b3CreateRecording")
@@ -4629,6 +4670,10 @@ extern class Box3D
 	public static function body_SetSleepThreshold(bodyId:B3BodyIdNative, sleepThreshold:cpp.Float32):Void;
 	@:native("b3Body_GetSleepThreshold")
 	public static function body_GetSleepThreshold(bodyId:B3BodyIdNative):cpp.Float32;
+	@:native("b3Body_SetSafetyFactor")
+	public static function body_SetSafetyFactor(bodyId:B3BodyIdNative, safetyFactor:cpp.Float32):Void;
+	@:native("b3Body_GetSafetyFactor")
+	public static function body_GetSafetyFactor(bodyId:B3BodyIdNative):cpp.Float32;
 	@:native("b3Body_IsEnabled")
 	public static function body_IsEnabled(bodyId:B3BodyIdNative):Bool;
 	@:native("b3Body_Disable")
@@ -5235,8 +5280,8 @@ extern class Box3D
 	public static function dynamicTree_GetByteCount(tree:cpp.RawConstPointer<B3DynamicTreeNative>):Int;
 	@:native("b3DynamicTree_Validate")
 	public static function dynamicTree_Validate(tree:cpp.RawConstPointer<B3DynamicTreeNative>):Void;
-	@:native("b3DynamicTree_ValidateNoEnlarged")
-	public static function dynamicTree_ValidateNoEnlarged(tree:cpp.RawConstPointer<B3DynamicTreeNative>):Void;
+	@:native("b3DynamicTree_ValidateNoMoved")
+	public static function dynamicTree_ValidateNoMoved(tree:cpp.RawConstPointer<B3DynamicTreeNative>):Void;
 	@:native("b3DynamicTree_Save")
 	public static function dynamicTree_Save(tree:cpp.RawConstPointer<B3DynamicTreeNative>, fileName:cpp.ConstCharStar):Void;
 	@:native("b3DynamicTree_Load")
@@ -5407,6 +5452,10 @@ extern class Box3D
 	public static function collideTriangleAndHull(manifold:cpp.RawPointer<B3LocalManifoldNative>, capacity:Int, v1:B3Vec3Native, v2:B3Vec3Native, v3:B3Vec3Native, triangleFlags:Int, hullB:cpp.RawConstPointer<B3HullDataNative>, cache:cpp.RawPointer<B3SATCacheNative>, enableSpeculative:Bool):Void;
 	@:native("b3CollideTriangleAndSphere")
 	public static function collideTriangleAndSphere(manifold:cpp.RawPointer<B3LocalManifoldNative>, capacity:Int, triangleA:cpp.RawConstPointer<B3Vec3Native>, sphereB:cpp.RawConstPointer<B3SphereNative>):Void;
+	@:native("b3Hull2D")
+	public static function hull2D(pts:cpp.RawPointer<B3Point2DNative>, count:Int, hull:cpp.RawPointer<B3Point2DNative>):Int;
+	@:native("b3SimplifyHull2D")
+	public static function simplifyHull2D(hull:cpp.RawPointer<B3Point2DNative>, count:Int, target:Int):Int;
 	@:native("b3SolvePlanes")
 	public static function solvePlanes(targetDelta:B3Vec3Native, planes:cpp.RawPointer<B3CollisionPlaneNative>, count:Int):B3PlaneSolverResultNative;
 	@:native("b3ClipVector")
