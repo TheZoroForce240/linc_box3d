@@ -44,13 +44,16 @@ var worldDef:B3WorldDef = Box3D.defaultWorldDef(); //returns B3WorldDefNative bu
 worldDef.gravity.y = -10;
 worldId = Box3D.createWorld(worldDef); //auto casts into a pointer
 ```
-
+There is a small advantage to leaving it as native since it will be directly stack allocated and no casting is used, which works well for temp variables.
 ```haxe
 var worldDef = Box3D.defaultWorldDef();
 worldDef.gravity.y = -10;
 worldId = Box3D.createWorld(worldDef.toPointer()); //have to manually cast because its currently a B3WorldDefNative
 ```
-There is a small advantage to leaving it as native since it will be directly stack allocated and no casting is used, which works well for temp variables.
+Also there is a few cases where you have to manually cast due to struct members still being native
+```haxe
+Box3D.createHullShape(bodyId, shapeDef, boxHull.base.toPointer());
+```
 
 ##
 
