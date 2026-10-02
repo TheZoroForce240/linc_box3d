@@ -47,7 +47,7 @@ abstract B3Vec3(B3Vec3Struct) from B3Vec3Struct to B3Vec3Struct {
 	@:to @:noCompletion public static inline function toNative(v:B3Vec3):B3Vec3Native { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3Vec3Struct):B3Vec3 { return new B3Vec3(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Vec3):B3Vec3Struct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Vec3):cpp.RawPointer<B3Vec3Native> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Vec3):cpp.RawPointer<B3Vec3Native> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Vec3Native> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Vec3Native) * size) : null;
@@ -78,7 +78,7 @@ abstract B3Transform(B3TransformStruct) from B3TransformStruct to B3TransformStr
 	@:to @:noCompletion public static inline function toNative(v:B3Transform):B3TransformNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TransformStruct):B3Transform { return new B3Transform(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Transform):B3TransformStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Transform):cpp.RawPointer<B3TransformNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Transform):cpp.RawPointer<B3TransformNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TransformNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TransformNative) * size) : null;
@@ -110,7 +110,7 @@ abstract B3Pos(B3PosStruct) from B3PosStruct to B3PosStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Pos):B3PosNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3PosStruct):B3Pos { return new B3Pos(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Pos):B3PosStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Pos):cpp.RawPointer<B3PosNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Pos):cpp.RawPointer<B3PosNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3PosNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3PosNative) * size) : null;
@@ -141,7 +141,7 @@ abstract B3WorldTransform(B3WorldTransformStruct) from B3WorldTransformStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3WorldTransform):B3WorldTransformNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WorldTransformStruct):B3WorldTransform { return new B3WorldTransform(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WorldTransform):B3WorldTransformStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldTransform):cpp.RawPointer<B3WorldTransformNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldTransform):cpp.RawPointer<B3WorldTransformNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WorldTransformNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WorldTransformNative) * size) : null;
@@ -173,7 +173,7 @@ abstract B3Matrix3(B3Matrix3Struct) from B3Matrix3Struct to B3Matrix3Struct {
 	@:to @:noCompletion public static inline function toNative(v:B3Matrix3):B3Matrix3Native { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3Matrix3Struct):B3Matrix3 { return new B3Matrix3(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Matrix3):B3Matrix3Struct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Matrix3):cpp.RawPointer<B3Matrix3Native> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Matrix3):cpp.RawPointer<B3Matrix3Native> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Matrix3Native> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Matrix3Native) * size) : null;
@@ -210,7 +210,7 @@ abstract B3WorldCastOutput(B3WorldCastOutputStruct) from B3WorldCastOutputStruct
 	@:to @:noCompletion public static inline function toNative(v:B3WorldCastOutput):B3WorldCastOutputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WorldCastOutputStruct):B3WorldCastOutput { return new B3WorldCastOutput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WorldCastOutput):B3WorldCastOutputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldCastOutput):cpp.RawPointer<B3WorldCastOutputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldCastOutput):cpp.RawPointer<B3WorldCastOutputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WorldCastOutputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WorldCastOutputNative) * size) : null;
@@ -247,7 +247,7 @@ abstract B3CastOutput(B3CastOutputStruct) from B3CastOutputStruct to B3CastOutpu
 	@:to @:noCompletion public static inline function toNative(v:B3CastOutput):B3CastOutputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CastOutputStruct):B3CastOutput { return new B3CastOutput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CastOutput):B3CastOutputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CastOutput):cpp.RawPointer<B3CastOutputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CastOutput):cpp.RawPointer<B3CastOutputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CastOutputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CastOutputNative) * size) : null;
@@ -303,7 +303,7 @@ abstract B3DebugDraw(B3DebugDrawStruct) from B3DebugDrawStruct to B3DebugDrawStr
 	@:to @:noCompletion public static inline function toNative(v:B3DebugDraw):B3DebugDrawNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DebugDrawStruct):B3DebugDraw { return new B3DebugDraw(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DebugDraw):B3DebugDrawStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DebugDraw):cpp.RawPointer<B3DebugDrawNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DebugDraw):cpp.RawPointer<B3DebugDrawNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DebugDrawNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DebugDrawNative) * size) : null;
@@ -335,7 +335,7 @@ abstract B3Version(B3VersionStruct) from B3VersionStruct to B3VersionStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Version):B3VersionNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3VersionStruct):B3Version { return new B3Version(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Version):B3VersionStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Version):cpp.RawPointer<B3VersionNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Version):cpp.RawPointer<B3VersionNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3VersionNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3VersionNative) * size) : null;
@@ -369,7 +369,7 @@ abstract B3Capacity(B3CapacityStruct) from B3CapacityStruct to B3CapacityStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3Capacity):B3CapacityNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CapacityStruct):B3Capacity { return new B3Capacity(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Capacity):B3CapacityStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Capacity):cpp.RawPointer<B3CapacityNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Capacity):cpp.RawPointer<B3CapacityNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CapacityNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CapacityNative) * size) : null;
@@ -421,7 +421,7 @@ abstract B3WorldDef(B3WorldDefStruct) from B3WorldDefStruct to B3WorldDefStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3WorldDef):B3WorldDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WorldDefStruct):B3WorldDef { return new B3WorldDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WorldDef):B3WorldDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldDef):cpp.RawPointer<B3WorldDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldDef):cpp.RawPointer<B3WorldDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WorldDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WorldDefNative) * size) : null;
@@ -456,7 +456,7 @@ abstract B3MotionLocks(B3MotionLocksStruct) from B3MotionLocksStruct to B3Motion
 	@:to @:noCompletion public static inline function toNative(v:B3MotionLocks):B3MotionLocksNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MotionLocksStruct):B3MotionLocks { return new B3MotionLocks(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MotionLocks):B3MotionLocksStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MotionLocks):cpp.RawPointer<B3MotionLocksNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MotionLocks):cpp.RawPointer<B3MotionLocksNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MotionLocksNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MotionLocksNative) * size) : null;
@@ -505,7 +505,7 @@ abstract B3BodyDef(B3BodyDefStruct) from B3BodyDefStruct to B3BodyDefStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3BodyDef):B3BodyDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyDefStruct):B3BodyDef { return new B3BodyDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyDef):B3BodyDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyDef):cpp.RawPointer<B3BodyDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyDef):cpp.RawPointer<B3BodyDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyDefNative) * size) : null;
@@ -537,7 +537,7 @@ abstract B3Filter(B3FilterStruct) from B3FilterStruct to B3FilterStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Filter):B3FilterNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3FilterStruct):B3Filter { return new B3Filter(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Filter):B3FilterStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Filter):cpp.RawPointer<B3FilterNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Filter):cpp.RawPointer<B3FilterNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3FilterNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3FilterNative) * size) : null;
@@ -573,7 +573,7 @@ abstract B3SurfaceMaterial(B3SurfaceMaterialStruct) from B3SurfaceMaterialStruct
 	@:to @:noCompletion public static inline function toNative(v:B3SurfaceMaterial):B3SurfaceMaterialNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SurfaceMaterialStruct):B3SurfaceMaterial { return new B3SurfaceMaterial(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SurfaceMaterial):B3SurfaceMaterialStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SurfaceMaterial):cpp.RawPointer<B3SurfaceMaterialNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SurfaceMaterial):cpp.RawPointer<B3SurfaceMaterialNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SurfaceMaterialNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SurfaceMaterialNative) * size) : null;
@@ -620,7 +620,7 @@ abstract B3ShapeDef(B3ShapeDefStruct) from B3ShapeDefStruct to B3ShapeDefStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3ShapeDef):B3ShapeDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ShapeDefStruct):B3ShapeDef { return new B3ShapeDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ShapeDef):B3ShapeDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeDef):cpp.RawPointer<B3ShapeDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeDef):cpp.RawPointer<B3ShapeDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ShapeDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ShapeDefNative) * size) : null;
@@ -672,7 +672,7 @@ abstract B3Profile(B3ProfileStruct) from B3ProfileStruct to B3ProfileStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Profile):B3ProfileNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ProfileStruct):B3Profile { return new B3Profile(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Profile):B3ProfileStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Profile):cpp.RawPointer<B3ProfileNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Profile):cpp.RawPointer<B3ProfileNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ProfileNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ProfileNative) * size) : null;
@@ -721,7 +721,7 @@ abstract B3Counters(B3CountersStruct) from B3CountersStruct to B3CountersStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3Counters):B3CountersNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CountersStruct):B3Counters { return new B3Counters(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Counters):B3CountersStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Counters):cpp.RawPointer<B3CountersNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Counters):cpp.RawPointer<B3CountersNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CountersNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CountersNative) * size) : null;
@@ -762,7 +762,7 @@ abstract B3JointDef(B3JointDefStruct) from B3JointDefStruct to B3JointDefStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3JointDef):B3JointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3JointDefStruct):B3JointDef { return new B3JointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3JointDef):B3JointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointDef):cpp.RawPointer<B3JointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointDef):cpp.RawPointer<B3JointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3JointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3JointDefNative) * size) : null;
@@ -804,7 +804,7 @@ abstract B3DistanceJointDef(B3DistanceJointDefStruct) from B3DistanceJointDefStr
 	@:to @:noCompletion public static inline function toNative(v:B3DistanceJointDef):B3DistanceJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DistanceJointDefStruct):B3DistanceJointDef { return new B3DistanceJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DistanceJointDef):B3DistanceJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceJointDef):cpp.RawPointer<B3DistanceJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceJointDef):cpp.RawPointer<B3DistanceJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DistanceJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DistanceJointDefNative) * size) : null;
@@ -844,7 +844,7 @@ abstract B3MotorJointDef(B3MotorJointDefStruct) from B3MotorJointDefStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3MotorJointDef):B3MotorJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MotorJointDefStruct):B3MotorJointDef { return new B3MotorJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MotorJointDef):B3MotorJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MotorJointDef):cpp.RawPointer<B3MotorJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MotorJointDef):cpp.RawPointer<B3MotorJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MotorJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MotorJointDefNative) * size) : null;
@@ -874,7 +874,7 @@ abstract B3FilterJointDef(B3FilterJointDefStruct) from B3FilterJointDefStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3FilterJointDef):B3FilterJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3FilterJointDefStruct):B3FilterJointDef { return new B3FilterJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3FilterJointDef):B3FilterJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3FilterJointDef):cpp.RawPointer<B3FilterJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3FilterJointDef):cpp.RawPointer<B3FilterJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3FilterJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3FilterJointDefNative) * size) : null;
@@ -907,7 +907,7 @@ abstract B3ParallelJointDef(B3ParallelJointDefStruct) from B3ParallelJointDefStr
 	@:to @:noCompletion public static inline function toNative(v:B3ParallelJointDef):B3ParallelJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ParallelJointDefStruct):B3ParallelJointDef { return new B3ParallelJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ParallelJointDef):B3ParallelJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ParallelJointDef):cpp.RawPointer<B3ParallelJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ParallelJointDef):cpp.RawPointer<B3ParallelJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ParallelJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ParallelJointDefNative) * size) : null;
@@ -947,7 +947,7 @@ abstract B3PrismaticJointDef(B3PrismaticJointDefStruct) from B3PrismaticJointDef
 	@:to @:noCompletion public static inline function toNative(v:B3PrismaticJointDef):B3PrismaticJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3PrismaticJointDefStruct):B3PrismaticJointDef { return new B3PrismaticJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3PrismaticJointDef):B3PrismaticJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PrismaticJointDef):cpp.RawPointer<B3PrismaticJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PrismaticJointDef):cpp.RawPointer<B3PrismaticJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3PrismaticJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3PrismaticJointDefNative) * size) : null;
@@ -987,7 +987,7 @@ abstract B3RevoluteJointDef(B3RevoluteJointDefStruct) from B3RevoluteJointDefStr
 	@:to @:noCompletion public static inline function toNative(v:B3RevoluteJointDef):B3RevoluteJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RevoluteJointDefStruct):B3RevoluteJointDef { return new B3RevoluteJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RevoluteJointDef):B3RevoluteJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RevoluteJointDef):cpp.RawPointer<B3RevoluteJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RevoluteJointDef):cpp.RawPointer<B3RevoluteJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RevoluteJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RevoluteJointDefNative) * size) : null;
@@ -1029,7 +1029,7 @@ abstract B3SphericalJointDef(B3SphericalJointDefStruct) from B3SphericalJointDef
 	@:to @:noCompletion public static inline function toNative(v:B3SphericalJointDef):B3SphericalJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SphericalJointDefStruct):B3SphericalJointDef { return new B3SphericalJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SphericalJointDef):B3SphericalJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SphericalJointDef):cpp.RawPointer<B3SphericalJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SphericalJointDef):cpp.RawPointer<B3SphericalJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SphericalJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SphericalJointDefNative) * size) : null;
@@ -1063,7 +1063,7 @@ abstract B3WeldJointDef(B3WeldJointDefStruct) from B3WeldJointDefStruct to B3Wel
 	@:to @:noCompletion public static inline function toNative(v:B3WeldJointDef):B3WeldJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WeldJointDefStruct):B3WeldJointDef { return new B3WeldJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WeldJointDef):B3WeldJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WeldJointDef):cpp.RawPointer<B3WeldJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WeldJointDef):cpp.RawPointer<B3WeldJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WeldJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WeldJointDefNative) * size) : null;
@@ -1110,7 +1110,7 @@ abstract B3WheelJointDef(B3WheelJointDefStruct) from B3WheelJointDefStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3WheelJointDef):B3WheelJointDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WheelJointDefStruct):B3WheelJointDef { return new B3WheelJointDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WheelJointDef):B3WheelJointDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WheelJointDef):cpp.RawPointer<B3WheelJointDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WheelJointDef):cpp.RawPointer<B3WheelJointDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WheelJointDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WheelJointDefNative) * size) : null;
@@ -1144,7 +1144,7 @@ abstract B3ExplosionDef(B3ExplosionDefStruct) from B3ExplosionDefStruct to B3Exp
 	@:to @:noCompletion public static inline function toNative(v:B3ExplosionDef):B3ExplosionDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ExplosionDefStruct):B3ExplosionDef { return new B3ExplosionDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ExplosionDef):B3ExplosionDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ExplosionDef):cpp.RawPointer<B3ExplosionDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ExplosionDef):cpp.RawPointer<B3ExplosionDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ExplosionDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ExplosionDefNative) * size) : null;
@@ -1175,7 +1175,7 @@ abstract B3SensorBeginTouchEvent(B3SensorBeginTouchEventStruct) from B3SensorBeg
 	@:to @:noCompletion public static inline function toNative(v:B3SensorBeginTouchEvent):B3SensorBeginTouchEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SensorBeginTouchEventStruct):B3SensorBeginTouchEvent { return new B3SensorBeginTouchEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SensorBeginTouchEvent):B3SensorBeginTouchEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorBeginTouchEvent):cpp.RawPointer<B3SensorBeginTouchEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorBeginTouchEvent):cpp.RawPointer<B3SensorBeginTouchEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SensorBeginTouchEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SensorBeginTouchEventNative) * size) : null;
@@ -1206,7 +1206,7 @@ abstract B3SensorEndTouchEvent(B3SensorEndTouchEventStruct) from B3SensorEndTouc
 	@:to @:noCompletion public static inline function toNative(v:B3SensorEndTouchEvent):B3SensorEndTouchEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SensorEndTouchEventStruct):B3SensorEndTouchEvent { return new B3SensorEndTouchEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SensorEndTouchEvent):B3SensorEndTouchEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorEndTouchEvent):cpp.RawPointer<B3SensorEndTouchEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorEndTouchEvent):cpp.RawPointer<B3SensorEndTouchEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SensorEndTouchEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SensorEndTouchEventNative) * size) : null;
@@ -1239,7 +1239,7 @@ abstract B3SensorEvents(B3SensorEventsStruct) from B3SensorEventsStruct to B3Sen
 	@:to @:noCompletion public static inline function toNative(v:B3SensorEvents):B3SensorEventsNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SensorEventsStruct):B3SensorEvents { return new B3SensorEvents(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SensorEvents):B3SensorEventsStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorEvents):cpp.RawPointer<B3SensorEventsNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SensorEvents):cpp.RawPointer<B3SensorEventsNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SensorEventsNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SensorEventsNative) * size) : null;
@@ -1271,7 +1271,7 @@ abstract B3ContactBeginTouchEvent(B3ContactBeginTouchEventStruct) from B3Contact
 	@:to @:noCompletion public static inline function toNative(v:B3ContactBeginTouchEvent):B3ContactBeginTouchEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactBeginTouchEventStruct):B3ContactBeginTouchEvent { return new B3ContactBeginTouchEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactBeginTouchEvent):B3ContactBeginTouchEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactBeginTouchEvent):cpp.RawPointer<B3ContactBeginTouchEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactBeginTouchEvent):cpp.RawPointer<B3ContactBeginTouchEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactBeginTouchEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactBeginTouchEventNative) * size) : null;
@@ -1303,7 +1303,7 @@ abstract B3ContactEndTouchEvent(B3ContactEndTouchEventStruct) from B3ContactEndT
 	@:to @:noCompletion public static inline function toNative(v:B3ContactEndTouchEvent):B3ContactEndTouchEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactEndTouchEventStruct):B3ContactEndTouchEvent { return new B3ContactEndTouchEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactEndTouchEvent):B3ContactEndTouchEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactEndTouchEvent):cpp.RawPointer<B3ContactEndTouchEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactEndTouchEvent):cpp.RawPointer<B3ContactEndTouchEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactEndTouchEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactEndTouchEventNative) * size) : null;
@@ -1340,7 +1340,7 @@ abstract B3ContactHitEvent(B3ContactHitEventStruct) from B3ContactHitEventStruct
 	@:to @:noCompletion public static inline function toNative(v:B3ContactHitEvent):B3ContactHitEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactHitEventStruct):B3ContactHitEvent { return new B3ContactHitEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactHitEvent):B3ContactHitEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactHitEvent):cpp.RawPointer<B3ContactHitEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactHitEvent):cpp.RawPointer<B3ContactHitEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactHitEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactHitEventNative) * size) : null;
@@ -1375,7 +1375,7 @@ abstract B3ContactEvents(B3ContactEventsStruct) from B3ContactEventsStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3ContactEvents):B3ContactEventsNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactEventsStruct):B3ContactEvents { return new B3ContactEvents(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactEvents):B3ContactEventsStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactEvents):cpp.RawPointer<B3ContactEventsNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactEvents):cpp.RawPointer<B3ContactEventsNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactEventsNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactEventsNative) * size) : null;
@@ -1408,7 +1408,7 @@ abstract B3BodyMoveEvent(B3BodyMoveEventStruct) from B3BodyMoveEventStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3BodyMoveEvent):B3BodyMoveEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyMoveEventStruct):B3BodyMoveEvent { return new B3BodyMoveEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyMoveEvent):B3BodyMoveEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyMoveEvent):cpp.RawPointer<B3BodyMoveEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyMoveEvent):cpp.RawPointer<B3BodyMoveEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyMoveEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyMoveEventNative) * size) : null;
@@ -1439,7 +1439,7 @@ abstract B3BodyEvents(B3BodyEventsStruct) from B3BodyEventsStruct to B3BodyEvent
 	@:to @:noCompletion public static inline function toNative(v:B3BodyEvents):B3BodyEventsNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyEventsStruct):B3BodyEvents { return new B3BodyEvents(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyEvents):B3BodyEventsStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyEvents):cpp.RawPointer<B3BodyEventsNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyEvents):cpp.RawPointer<B3BodyEventsNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyEventsNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyEventsNative) * size) : null;
@@ -1470,7 +1470,7 @@ abstract B3JointEvent(B3JointEventStruct) from B3JointEventStruct to B3JointEven
 	@:to @:noCompletion public static inline function toNative(v:B3JointEvent):B3JointEventNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3JointEventStruct):B3JointEvent { return new B3JointEvent(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3JointEvent):B3JointEventStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointEvent):cpp.RawPointer<B3JointEventNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointEvent):cpp.RawPointer<B3JointEventNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3JointEventNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3JointEventNative) * size) : null;
@@ -1501,7 +1501,7 @@ abstract B3JointEvents(B3JointEventsStruct) from B3JointEventsStruct to B3JointE
 	@:to @:noCompletion public static inline function toNative(v:B3JointEvents):B3JointEventsNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3JointEventsStruct):B3JointEvents { return new B3JointEvents(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3JointEvents):B3JointEventsStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointEvents):cpp.RawPointer<B3JointEventsNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointEvents):cpp.RawPointer<B3JointEventsNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3JointEventsNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3JointEventsNative) * size) : null;
@@ -1535,7 +1535,7 @@ abstract B3ContactData(B3ContactDataStruct) from B3ContactDataStruct to B3Contac
 	@:to @:noCompletion public static inline function toNative(v:B3ContactData):B3ContactDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactDataStruct):B3ContactData { return new B3ContactData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactData):B3ContactDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactData):cpp.RawPointer<B3ContactDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactData):cpp.RawPointer<B3ContactDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactDataNative) * size) : null;
@@ -1568,7 +1568,7 @@ abstract B3QueryFilter(B3QueryFilterStruct) from B3QueryFilterStruct to B3QueryF
 	@:to @:noCompletion public static inline function toNative(v:B3QueryFilter):B3QueryFilterNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3QueryFilterStruct):B3QueryFilter { return new B3QueryFilter(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3QueryFilter):B3QueryFilterStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3QueryFilter):cpp.RawPointer<B3QueryFilterNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3QueryFilter):cpp.RawPointer<B3QueryFilterNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3QueryFilterNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3QueryFilterNative) * size) : null;
@@ -1600,7 +1600,7 @@ abstract B3RayCastInput(B3RayCastInputStruct) from B3RayCastInputStruct to B3Ray
 	@:to @:noCompletion public static inline function toNative(v:B3RayCastInput):B3RayCastInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RayCastInputStruct):B3RayCastInput { return new B3RayCastInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RayCastInput):B3RayCastInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RayCastInput):cpp.RawPointer<B3RayCastInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RayCastInput):cpp.RawPointer<B3RayCastInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RayCastInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RayCastInputNative) * size) : null;
@@ -1639,7 +1639,7 @@ abstract B3RayResult(B3RayResultStruct) from B3RayResultStruct to B3RayResultStr
 	@:to @:noCompletion public static inline function toNative(v:B3RayResult):B3RayResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RayResultStruct):B3RayResult { return new B3RayResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RayResult):B3RayResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RayResult):cpp.RawPointer<B3RayResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RayResult):cpp.RawPointer<B3RayResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RayResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RayResultNative) * size) : null;
@@ -1671,7 +1671,7 @@ abstract B3ShapeProxy(B3ShapeProxyStruct) from B3ShapeProxyStruct to B3ShapeProx
 	@:to @:noCompletion public static inline function toNative(v:B3ShapeProxy):B3ShapeProxyNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ShapeProxyStruct):B3ShapeProxy { return new B3ShapeProxy(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ShapeProxy):B3ShapeProxyStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeProxy):cpp.RawPointer<B3ShapeProxyNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeProxy):cpp.RawPointer<B3ShapeProxyNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ShapeProxyNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ShapeProxyNative) * size) : null;
@@ -1704,7 +1704,7 @@ abstract B3ShapeCastInput(B3ShapeCastInputStruct) from B3ShapeCastInputStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3ShapeCastInput):B3ShapeCastInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ShapeCastInputStruct):B3ShapeCastInput { return new B3ShapeCastInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ShapeCastInput):B3ShapeCastInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeCastInput):cpp.RawPointer<B3ShapeCastInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeCastInput):cpp.RawPointer<B3ShapeCastInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ShapeCastInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ShapeCastInputNative) * size) : null;
@@ -1736,7 +1736,7 @@ abstract B3BoxCastInput(B3BoxCastInputStruct) from B3BoxCastInputStruct to B3Box
 	@:to @:noCompletion public static inline function toNative(v:B3BoxCastInput):B3BoxCastInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BoxCastInputStruct):B3BoxCastInput { return new B3BoxCastInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BoxCastInput):B3BoxCastInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BoxCastInput):cpp.RawPointer<B3BoxCastInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BoxCastInput):cpp.RawPointer<B3BoxCastInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BoxCastInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BoxCastInputNative) * size) : null;
@@ -1773,7 +1773,7 @@ abstract B3BodyCastResult(B3BodyCastResultStruct) from B3BodyCastResultStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3BodyCastResult):B3BodyCastResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyCastResultStruct):B3BodyCastResult { return new B3BodyCastResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyCastResult):B3BodyCastResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyCastResult):cpp.RawPointer<B3BodyCastResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyCastResult):cpp.RawPointer<B3BodyCastResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyCastResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyCastResultNative) * size) : null;
@@ -1806,7 +1806,7 @@ abstract B3SimplexCache(B3SimplexCacheStruct) from B3SimplexCacheStruct to B3Sim
 	@:to @:noCompletion public static inline function toNative(v:B3SimplexCache):B3SimplexCacheNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SimplexCacheStruct):B3SimplexCache { return new B3SimplexCache(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SimplexCache):B3SimplexCacheStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SimplexCache):cpp.RawPointer<B3SimplexCacheNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SimplexCache):cpp.RawPointer<B3SimplexCacheNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SimplexCacheNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SimplexCacheNative) * size) : null;
@@ -1841,7 +1841,7 @@ abstract B3ShapeCastPairInput(B3ShapeCastPairInputStruct) from B3ShapeCastPairIn
 	@:to @:noCompletion public static inline function toNative(v:B3ShapeCastPairInput):B3ShapeCastPairInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ShapeCastPairInputStruct):B3ShapeCastPairInput { return new B3ShapeCastPairInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ShapeCastPairInput):B3ShapeCastPairInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeCastPairInput):cpp.RawPointer<B3ShapeCastPairInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeCastPairInput):cpp.RawPointer<B3ShapeCastPairInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ShapeCastPairInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ShapeCastPairInputNative) * size) : null;
@@ -1874,7 +1874,7 @@ abstract B3DistanceInput(B3DistanceInputStruct) from B3DistanceInputStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3DistanceInput):B3DistanceInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DistanceInputStruct):B3DistanceInput { return new B3DistanceInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DistanceInput):B3DistanceInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceInput):cpp.RawPointer<B3DistanceInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceInput):cpp.RawPointer<B3DistanceInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DistanceInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DistanceInputNative) * size) : null;
@@ -1909,7 +1909,7 @@ abstract B3DistanceOutput(B3DistanceOutputStruct) from B3DistanceOutputStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3DistanceOutput):B3DistanceOutputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DistanceOutputStruct):B3DistanceOutput { return new B3DistanceOutput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DistanceOutput):B3DistanceOutputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceOutput):cpp.RawPointer<B3DistanceOutputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DistanceOutput):cpp.RawPointer<B3DistanceOutputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DistanceOutputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DistanceOutputNative) * size) : null;
@@ -1944,7 +1944,7 @@ abstract B3SimplexVertex(B3SimplexVertexStruct) from B3SimplexVertexStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3SimplexVertex):B3SimplexVertexNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SimplexVertexStruct):B3SimplexVertex { return new B3SimplexVertex(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SimplexVertex):B3SimplexVertexStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SimplexVertex):cpp.RawPointer<B3SimplexVertexNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SimplexVertex):cpp.RawPointer<B3SimplexVertexNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SimplexVertexNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SimplexVertexNative) * size) : null;
@@ -1975,7 +1975,7 @@ abstract B3Simplex(B3SimplexStruct) from B3SimplexStruct to B3SimplexStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Simplex):B3SimplexNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SimplexStruct):B3Simplex { return new B3Simplex(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Simplex):B3SimplexStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Simplex):cpp.RawPointer<B3SimplexNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Simplex):cpp.RawPointer<B3SimplexNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SimplexNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SimplexNative) * size) : null;
@@ -2009,7 +2009,7 @@ abstract B3Sweep(B3SweepStruct) from B3SweepStruct to B3SweepStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Sweep):B3SweepNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SweepStruct):B3Sweep { return new B3Sweep(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Sweep):B3SweepStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Sweep):cpp.RawPointer<B3SweepNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Sweep):cpp.RawPointer<B3SweepNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SweepNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SweepNative) * size) : null;
@@ -2043,7 +2043,7 @@ abstract B3TOIInput(B3TOIInputStruct) from B3TOIInputStruct to B3TOIInputStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3TOIInput):B3TOIInputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TOIInputStruct):B3TOIInput { return new B3TOIInput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3TOIInput):B3TOIInputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TOIInput):cpp.RawPointer<B3TOIInputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TOIInput):cpp.RawPointer<B3TOIInputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TOIInputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TOIInputNative) * size) : null;
@@ -2081,7 +2081,7 @@ abstract B3TOIOutput(B3TOIOutputStruct) from B3TOIOutputStruct to B3TOIOutputStr
 	@:to @:noCompletion public static inline function toNative(v:B3TOIOutput):B3TOIOutputNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TOIOutputStruct):B3TOIOutput { return new B3TOIOutput(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3TOIOutput):B3TOIOutputStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TOIOutput):cpp.RawPointer<B3TOIOutputNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TOIOutput):cpp.RawPointer<B3TOIOutputNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TOIOutputNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TOIOutputNative) * size) : null;
@@ -2114,7 +2114,7 @@ abstract B3TreeNode(B3TreeNodeStruct) from B3TreeNodeStruct to B3TreeNodeStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3TreeNode):B3TreeNodeNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TreeNodeStruct):B3TreeNode { return new B3TreeNode(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3TreeNode):B3TreeNodeStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeNode):cpp.RawPointer<B3TreeNodeNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeNode):cpp.RawPointer<B3TreeNodeNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TreeNodeNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TreeNodeNative) * size) : null;
@@ -2147,7 +2147,7 @@ abstract B3TreeProxy(B3TreeProxyStruct) from B3TreeProxyStruct to B3TreeProxyStr
 	@:to @:noCompletion public static inline function toNative(v:B3TreeProxy):B3TreeProxyNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TreeProxyStruct):B3TreeProxy { return new B3TreeProxy(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3TreeProxy):B3TreeProxyStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeProxy):cpp.RawPointer<B3TreeProxyNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeProxy):cpp.RawPointer<B3TreeProxyNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TreeProxyNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TreeProxyNative) * size) : null;
@@ -2194,7 +2194,7 @@ abstract B3DynamicTree(B3DynamicTreeStruct) from B3DynamicTreeStruct to B3Dynami
 	@:to @:noCompletion public static inline function toNative(v:B3DynamicTree):B3DynamicTreeNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DynamicTreeStruct):B3DynamicTree { return new B3DynamicTree(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DynamicTree):B3DynamicTreeStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DynamicTree):cpp.RawPointer<B3DynamicTreeNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DynamicTree):cpp.RawPointer<B3DynamicTreeNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DynamicTreeNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DynamicTreeNative) * size) : null;
@@ -2225,7 +2225,7 @@ abstract B3TreeStats(B3TreeStatsStruct) from B3TreeStatsStruct to B3TreeStatsStr
 	@:to @:noCompletion public static inline function toNative(v:B3TreeStats):B3TreeStatsNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3TreeStatsStruct):B3TreeStats { return new B3TreeStats(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3TreeStats):B3TreeStatsStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeStats):cpp.RawPointer<B3TreeStatsNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3TreeStats):cpp.RawPointer<B3TreeStatsNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3TreeStatsNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3TreeStatsNative) * size) : null;
@@ -2259,7 +2259,7 @@ abstract B3PlaneResult(B3PlaneResultStruct) from B3PlaneResultStruct to B3PlaneR
 	@:to @:noCompletion public static inline function toNative(v:B3PlaneResult):B3PlaneResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3PlaneResultStruct):B3PlaneResult { return new B3PlaneResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3PlaneResult):B3PlaneResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PlaneResult):cpp.RawPointer<B3PlaneResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PlaneResult):cpp.RawPointer<B3PlaneResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3PlaneResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3PlaneResultNative) * size) : null;
@@ -2292,7 +2292,7 @@ abstract B3CollisionPlane(B3CollisionPlaneStruct) from B3CollisionPlaneStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3CollisionPlane):B3CollisionPlaneNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CollisionPlaneStruct):B3CollisionPlane { return new B3CollisionPlane(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CollisionPlane):B3CollisionPlaneStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CollisionPlane):cpp.RawPointer<B3CollisionPlaneNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CollisionPlane):cpp.RawPointer<B3CollisionPlaneNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CollisionPlaneNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CollisionPlaneNative) * size) : null;
@@ -2323,7 +2323,7 @@ abstract B3PlaneSolverResult(B3PlaneSolverResultStruct) from B3PlaneSolverResult
 	@:to @:noCompletion public static inline function toNative(v:B3PlaneSolverResult):B3PlaneSolverResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3PlaneSolverResultStruct):B3PlaneSolverResult { return new B3PlaneSolverResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3PlaneSolverResult):B3PlaneSolverResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PlaneSolverResult):cpp.RawPointer<B3PlaneSolverResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3PlaneSolverResult):cpp.RawPointer<B3PlaneSolverResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3PlaneSolverResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3PlaneSolverResultNative) * size) : null;
@@ -2354,7 +2354,7 @@ abstract B3BodyPlaneResult(B3BodyPlaneResultStruct) from B3BodyPlaneResultStruct
 	@:to @:noCompletion public static inline function toNative(v:B3BodyPlaneResult):B3BodyPlaneResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyPlaneResultStruct):B3BodyPlaneResult { return new B3BodyPlaneResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyPlaneResult):B3BodyPlaneResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyPlaneResult):cpp.RawPointer<B3BodyPlaneResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyPlaneResult):cpp.RawPointer<B3BodyPlaneResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyPlaneResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyPlaneResultNative) * size) : null;
@@ -2387,7 +2387,7 @@ abstract B3BodyTOIResult(B3BodyTOIResultStruct) from B3BodyTOIResultStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3BodyTOIResult):B3BodyTOIResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyTOIResultStruct):B3BodyTOIResult { return new B3BodyTOIResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyTOIResult):B3BodyTOIResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyTOIResult):cpp.RawPointer<B3BodyTOIResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyTOIResult):cpp.RawPointer<B3BodyTOIResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyTOIResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyTOIResultNative) * size) : null;
@@ -2419,7 +2419,7 @@ abstract B3MassData(B3MassDataStruct) from B3MassDataStruct to B3MassDataStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3MassData):B3MassDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MassDataStruct):B3MassData { return new B3MassData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MassData):B3MassDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MassData):cpp.RawPointer<B3MassDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MassData):cpp.RawPointer<B3MassDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MassDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MassDataNative) * size) : null;
@@ -2450,7 +2450,7 @@ abstract B3Sphere(B3SphereStruct) from B3SphereStruct to B3SphereStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Sphere):B3SphereNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SphereStruct):B3Sphere { return new B3Sphere(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Sphere):B3SphereStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Sphere):cpp.RawPointer<B3SphereNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Sphere):cpp.RawPointer<B3SphereNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SphereNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SphereNative) * size) : null;
@@ -2482,7 +2482,7 @@ abstract B3Capsule(B3CapsuleStruct) from B3CapsuleStruct to B3CapsuleStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Capsule):B3CapsuleNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CapsuleStruct):B3Capsule { return new B3Capsule(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Capsule):B3CapsuleStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Capsule):cpp.RawPointer<B3CapsuleNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Capsule):cpp.RawPointer<B3CapsuleNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CapsuleNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CapsuleNative) * size) : null;
@@ -2512,7 +2512,7 @@ abstract B3HullVertex(B3HullVertexStruct) from B3HullVertexStruct to B3HullVerte
 	@:to @:noCompletion public static inline function toNative(v:B3HullVertex):B3HullVertexNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HullVertexStruct):B3HullVertex { return new B3HullVertex(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HullVertex):B3HullVertexStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullVertex):cpp.RawPointer<B3HullVertexNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullVertex):cpp.RawPointer<B3HullVertexNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HullVertexNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HullVertexNative) * size) : null;
@@ -2545,7 +2545,7 @@ abstract B3HullHalfEdge(B3HullHalfEdgeStruct) from B3HullHalfEdgeStruct to B3Hul
 	@:to @:noCompletion public static inline function toNative(v:B3HullHalfEdge):B3HullHalfEdgeNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HullHalfEdgeStruct):B3HullHalfEdge { return new B3HullHalfEdge(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HullHalfEdge):B3HullHalfEdgeStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullHalfEdge):cpp.RawPointer<B3HullHalfEdgeNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullHalfEdge):cpp.RawPointer<B3HullHalfEdgeNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HullHalfEdgeNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HullHalfEdgeNative) * size) : null;
@@ -2575,7 +2575,7 @@ abstract B3HullFace(B3HullFaceStruct) from B3HullFaceStruct to B3HullFaceStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3HullFace):B3HullFaceNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HullFaceStruct):B3HullFace { return new B3HullFace(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HullFace):B3HullFaceStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullFace):cpp.RawPointer<B3HullFaceNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullFace):cpp.RawPointer<B3HullFaceNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HullFaceNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HullFaceNative) * size) : null;
@@ -2623,7 +2623,7 @@ abstract B3HullData(B3HullDataStruct) from B3HullDataStruct to B3HullDataStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3HullData):B3HullDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HullDataStruct):B3HullData { return new B3HullData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HullData):B3HullDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullData):cpp.RawPointer<B3HullDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HullData):cpp.RawPointer<B3HullDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HullDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HullDataNative) * size) : null;
@@ -2665,7 +2665,7 @@ abstract B3BoxHull(B3BoxHullStruct) from B3BoxHullStruct to B3BoxHullStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3BoxHull):B3BoxHullNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BoxHullStruct):B3BoxHull { return new B3BoxHull(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BoxHull):B3BoxHullStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BoxHull):cpp.RawPointer<B3BoxHullNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BoxHull):cpp.RawPointer<B3BoxHullNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BoxHullNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BoxHullNative) * size) : null;
@@ -2705,7 +2705,7 @@ abstract B3MeshDef(B3MeshDefStruct) from B3MeshDefStruct to B3MeshDefStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3MeshDef):B3MeshDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MeshDefStruct):B3MeshDef { return new B3MeshDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MeshDef):B3MeshDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshDef):cpp.RawPointer<B3MeshDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshDef):cpp.RawPointer<B3MeshDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MeshDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MeshDefNative) * size) : null;
@@ -2737,7 +2737,7 @@ abstract B3MeshTriangle(B3MeshTriangleStruct) from B3MeshTriangleStruct to B3Mes
 	@:to @:noCompletion public static inline function toNative(v:B3MeshTriangle):B3MeshTriangleNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MeshTriangleStruct):B3MeshTriangle { return new B3MeshTriangle(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MeshTriangle):B3MeshTriangleStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshTriangle):cpp.RawPointer<B3MeshTriangleNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshTriangle):cpp.RawPointer<B3MeshTriangleNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MeshTriangleNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MeshTriangleNative) * size) : null;
@@ -2783,7 +2783,7 @@ abstract B3MeshData(B3MeshDataStruct) from B3MeshDataStruct to B3MeshDataStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3MeshData):B3MeshDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MeshDataStruct):B3MeshData { return new B3MeshData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3MeshData):B3MeshDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshData):cpp.RawPointer<B3MeshDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3MeshData):cpp.RawPointer<B3MeshDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MeshDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MeshDataNative) * size) : null;
@@ -2814,7 +2814,7 @@ abstract B3Mesh(B3MeshStruct) from B3MeshStruct to B3MeshStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Mesh):B3MeshNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3MeshStruct):B3Mesh { return new B3Mesh(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Mesh):B3MeshStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Mesh):cpp.RawPointer<B3MeshNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Mesh):cpp.RawPointer<B3MeshNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3MeshNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3MeshNative) * size) : null;
@@ -2851,7 +2851,7 @@ abstract B3HeightFieldDef(B3HeightFieldDefStruct) from B3HeightFieldDefStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3HeightFieldDef):B3HeightFieldDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HeightFieldDefStruct):B3HeightFieldDef { return new B3HeightFieldDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HeightFieldDef):B3HeightFieldDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HeightFieldDef):cpp.RawPointer<B3HeightFieldDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HeightFieldDef):cpp.RawPointer<B3HeightFieldDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HeightFieldDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HeightFieldDefNative) * size) : null;
@@ -2895,7 +2895,7 @@ abstract B3HeightFieldData(B3HeightFieldDataStruct) from B3HeightFieldDataStruct
 	@:to @:noCompletion public static inline function toNative(v:B3HeightFieldData):B3HeightFieldDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3HeightFieldDataStruct):B3HeightFieldData { return new B3HeightFieldData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3HeightFieldData):B3HeightFieldDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HeightFieldData):cpp.RawPointer<B3HeightFieldDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3HeightFieldData):cpp.RawPointer<B3HeightFieldDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3HeightFieldDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3HeightFieldDataNative) * size) : null;
@@ -2926,7 +2926,7 @@ abstract B3CompoundCapsuleDef(B3CompoundCapsuleDefStruct) from B3CompoundCapsule
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundCapsuleDef):B3CompoundCapsuleDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundCapsuleDefStruct):B3CompoundCapsuleDef { return new B3CompoundCapsuleDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundCapsuleDef):B3CompoundCapsuleDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundCapsuleDef):cpp.RawPointer<B3CompoundCapsuleDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundCapsuleDef):cpp.RawPointer<B3CompoundCapsuleDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundCapsuleDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundCapsuleDefNative) * size) : null;
@@ -2958,7 +2958,7 @@ abstract B3CompoundHullDef(B3CompoundHullDefStruct) from B3CompoundHullDefStruct
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundHullDef):B3CompoundHullDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundHullDefStruct):B3CompoundHullDef { return new B3CompoundHullDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundHullDef):B3CompoundHullDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundHullDef):cpp.RawPointer<B3CompoundHullDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundHullDef):cpp.RawPointer<B3CompoundHullDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundHullDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundHullDefNative) * size) : null;
@@ -2992,7 +2992,7 @@ abstract B3CompoundMeshDef(B3CompoundMeshDefStruct) from B3CompoundMeshDefStruct
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundMeshDef):B3CompoundMeshDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundMeshDefStruct):B3CompoundMeshDef { return new B3CompoundMeshDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundMeshDef):B3CompoundMeshDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundMeshDef):cpp.RawPointer<B3CompoundMeshDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundMeshDef):cpp.RawPointer<B3CompoundMeshDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundMeshDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundMeshDefNative) * size) : null;
@@ -3023,7 +3023,7 @@ abstract B3CompoundSphereDef(B3CompoundSphereDefStruct) from B3CompoundSphereDef
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundSphereDef):B3CompoundSphereDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundSphereDefStruct):B3CompoundSphereDef { return new B3CompoundSphereDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundSphereDef):B3CompoundSphereDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundSphereDef):cpp.RawPointer<B3CompoundSphereDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundSphereDef):cpp.RawPointer<B3CompoundSphereDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundSphereDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundSphereDefNative) * size) : null;
@@ -3060,7 +3060,7 @@ abstract B3CompoundDef(B3CompoundDefStruct) from B3CompoundDefStruct to B3Compou
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundDef):B3CompoundDefNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundDefStruct):B3CompoundDef { return new B3CompoundDef(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundDef):B3CompoundDefStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundDef):cpp.RawPointer<B3CompoundDefNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundDef):cpp.RawPointer<B3CompoundDefNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundDefNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundDefNative) * size) : null;
@@ -3106,7 +3106,7 @@ abstract B3CompoundData(B3CompoundDataStruct) from B3CompoundDataStruct to B3Com
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundData):B3CompoundDataNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundDataStruct):B3CompoundData { return new B3CompoundData(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundData):B3CompoundDataStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundData):cpp.RawPointer<B3CompoundDataNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundData):cpp.RawPointer<B3CompoundDataNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundDataNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundDataNative) * size) : null;
@@ -3137,7 +3137,7 @@ abstract B3CompoundCapsule(B3CompoundCapsuleStruct) from B3CompoundCapsuleStruct
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundCapsule):B3CompoundCapsuleNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundCapsuleStruct):B3CompoundCapsule { return new B3CompoundCapsule(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundCapsule):B3CompoundCapsuleStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundCapsule):cpp.RawPointer<B3CompoundCapsuleNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundCapsule):cpp.RawPointer<B3CompoundCapsuleNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundCapsuleNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundCapsuleNative) * size) : null;
@@ -3169,7 +3169,7 @@ abstract B3CompoundHull(B3CompoundHullStruct) from B3CompoundHullStruct to B3Com
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundHull):B3CompoundHullNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundHullStruct):B3CompoundHull { return new B3CompoundHull(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundHull):B3CompoundHullStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundHull):cpp.RawPointer<B3CompoundHullNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundHull):cpp.RawPointer<B3CompoundHullNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundHullNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundHullNative) * size) : null;
@@ -3202,7 +3202,7 @@ abstract B3CompoundMesh(B3CompoundMeshStruct) from B3CompoundMeshStruct to B3Com
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundMesh):B3CompoundMeshNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundMeshStruct):B3CompoundMesh { return new B3CompoundMesh(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundMesh):B3CompoundMeshStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundMesh):cpp.RawPointer<B3CompoundMeshNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundMesh):cpp.RawPointer<B3CompoundMeshNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundMeshNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundMeshNative) * size) : null;
@@ -3233,7 +3233,7 @@ abstract B3CompoundSphere(B3CompoundSphereStruct) from B3CompoundSphereStruct to
 	@:to @:noCompletion public static inline function toNative(v:B3CompoundSphere):B3CompoundSphereNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CompoundSphereStruct):B3CompoundSphere { return new B3CompoundSphere(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CompoundSphere):B3CompoundSphereStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundSphere):cpp.RawPointer<B3CompoundSphereNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CompoundSphere):cpp.RawPointer<B3CompoundSphereNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CompoundSphereNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CompoundSphereNative) * size) : null;
@@ -3269,7 +3269,7 @@ abstract B3ChildShape(B3ChildShapeStruct) from B3ChildShapeStruct to B3ChildShap
 	@:to @:noCompletion public static inline function toNative(v:B3ChildShape):B3ChildShapeNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ChildShapeStruct):B3ChildShape { return new B3ChildShape(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ChildShape):B3ChildShapeStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ChildShape):cpp.RawPointer<B3ChildShapeNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ChildShape):cpp.RawPointer<B3ChildShapeNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ChildShapeNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ChildShapeNative) * size) : null;
@@ -3308,7 +3308,7 @@ abstract B3ManifoldPoint(B3ManifoldPointStruct) from B3ManifoldPointStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3ManifoldPoint):B3ManifoldPointNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ManifoldPointStruct):B3ManifoldPoint { return new B3ManifoldPoint(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ManifoldPoint):B3ManifoldPointStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ManifoldPoint):cpp.RawPointer<B3ManifoldPointNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ManifoldPoint):cpp.RawPointer<B3ManifoldPointNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ManifoldPointNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ManifoldPointNative) * size) : null;
@@ -3343,7 +3343,7 @@ abstract B3Manifold(B3ManifoldStruct) from B3ManifoldStruct to B3ManifoldStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3Manifold):B3ManifoldNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ManifoldStruct):B3Manifold { return new B3Manifold(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Manifold):B3ManifoldStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Manifold):cpp.RawPointer<B3ManifoldNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Manifold):cpp.RawPointer<B3ManifoldNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ManifoldNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ManifoldNative) * size) : null;
@@ -3377,7 +3377,7 @@ abstract B3SATCache(B3SATCacheStruct) from B3SATCacheStruct to B3SATCacheStruct 
 	@:to @:noCompletion public static inline function toNative(v:B3SATCache):B3SATCacheNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SATCacheStruct):B3SATCache { return new B3SATCache(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SATCache):B3SATCacheStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SATCache):cpp.RawPointer<B3SATCacheNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SATCache):cpp.RawPointer<B3SATCacheNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SATCacheNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SATCacheNative) * size) : null;
@@ -3410,7 +3410,7 @@ abstract B3FeaturePair(B3FeaturePairStruct) from B3FeaturePairStruct to B3Featur
 	@:to @:noCompletion public static inline function toNative(v:B3FeaturePair):B3FeaturePairNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3FeaturePairStruct):B3FeaturePair { return new B3FeaturePair(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3FeaturePair):B3FeaturePairStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3FeaturePair):cpp.RawPointer<B3FeaturePairNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3FeaturePair):cpp.RawPointer<B3FeaturePairNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3FeaturePairNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3FeaturePairNative) * size) : null;
@@ -3443,7 +3443,7 @@ abstract B3LocalManifoldPoint(B3LocalManifoldPointStruct) from B3LocalManifoldPo
 	@:to @:noCompletion public static inline function toNative(v:B3LocalManifoldPoint):B3LocalManifoldPointNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3LocalManifoldPointStruct):B3LocalManifoldPoint { return new B3LocalManifoldPoint(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3LocalManifoldPoint):B3LocalManifoldPointStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3LocalManifoldPoint):cpp.RawPointer<B3LocalManifoldPointNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3LocalManifoldPoint):cpp.RawPointer<B3LocalManifoldPointNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3LocalManifoldPointNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3LocalManifoldPointNative) * size) : null;
@@ -3483,7 +3483,7 @@ abstract B3LocalManifold(B3LocalManifoldStruct) from B3LocalManifoldStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3LocalManifold):B3LocalManifoldNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3LocalManifoldStruct):B3LocalManifold { return new B3LocalManifold(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3LocalManifold):B3LocalManifoldStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3LocalManifold):cpp.RawPointer<B3LocalManifoldNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3LocalManifold):cpp.RawPointer<B3LocalManifoldNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3LocalManifoldNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3LocalManifoldNative) * size) : null;
@@ -3520,7 +3520,7 @@ abstract B3DebugShape(B3DebugShapeStruct) from B3DebugShapeStruct to B3DebugShap
 	@:to @:noCompletion public static inline function toNative(v:B3DebugShape):B3DebugShapeNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3DebugShapeStruct):B3DebugShape { return new B3DebugShape(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3DebugShape):B3DebugShapeStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DebugShape):cpp.RawPointer<B3DebugShapeNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3DebugShape):cpp.RawPointer<B3DebugShapeNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3DebugShapeNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3DebugShapeNative) * size) : null;
@@ -3551,7 +3551,7 @@ abstract B3WorldId(B3WorldIdStruct) from B3WorldIdStruct to B3WorldIdStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3WorldId):B3WorldIdNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3WorldIdStruct):B3WorldId { return new B3WorldId(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3WorldId):B3WorldIdStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldId):cpp.RawPointer<B3WorldIdNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3WorldId):cpp.RawPointer<B3WorldIdNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3WorldIdNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3WorldIdNative) * size) : null;
@@ -3583,7 +3583,7 @@ abstract B3BodyId(B3BodyIdStruct) from B3BodyIdStruct to B3BodyIdStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3BodyId):B3BodyIdNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3BodyIdStruct):B3BodyId { return new B3BodyId(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3BodyId):B3BodyIdStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyId):cpp.RawPointer<B3BodyIdNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3BodyId):cpp.RawPointer<B3BodyIdNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3BodyIdNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3BodyIdNative) * size) : null;
@@ -3615,7 +3615,7 @@ abstract B3ShapeId(B3ShapeIdStruct) from B3ShapeIdStruct to B3ShapeIdStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3ShapeId):B3ShapeIdNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ShapeIdStruct):B3ShapeId { return new B3ShapeId(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ShapeId):B3ShapeIdStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeId):cpp.RawPointer<B3ShapeIdNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ShapeId):cpp.RawPointer<B3ShapeIdNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ShapeIdNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ShapeIdNative) * size) : null;
@@ -3647,7 +3647,7 @@ abstract B3JointId(B3JointIdStruct) from B3JointIdStruct to B3JointIdStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3JointId):B3JointIdNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3JointIdStruct):B3JointId { return new B3JointId(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3JointId):B3JointIdStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointId):cpp.RawPointer<B3JointIdNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3JointId):cpp.RawPointer<B3JointIdNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3JointIdNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3JointIdNative) * size) : null;
@@ -3680,7 +3680,7 @@ abstract B3ContactId(B3ContactIdStruct) from B3ContactIdStruct to B3ContactIdStr
 	@:to @:noCompletion public static inline function toNative(v:B3ContactId):B3ContactIdNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3ContactIdStruct):B3ContactId { return new B3ContactId(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3ContactId):B3ContactIdStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactId):cpp.RawPointer<B3ContactIdNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3ContactId):cpp.RawPointer<B3ContactIdNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3ContactIdNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3ContactIdNative) * size) : null;
@@ -3715,7 +3715,7 @@ abstract B3RecPlayerInfo(B3RecPlayerInfoStruct) from B3RecPlayerInfoStruct to B3
 	@:to @:noCompletion public static inline function toNative(v:B3RecPlayerInfo):B3RecPlayerInfoNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RecPlayerInfoStruct):B3RecPlayerInfo { return new B3RecPlayerInfo(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RecPlayerInfo):B3RecPlayerInfoStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecPlayerInfo):cpp.RawPointer<B3RecPlayerInfoNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecPlayerInfo):cpp.RawPointer<B3RecPlayerInfoNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RecPlayerInfoNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RecPlayerInfoNative) * size) : null;
@@ -3753,7 +3753,7 @@ abstract B3RecQueryInfo(B3RecQueryInfoStruct) from B3RecQueryInfoStruct to B3Rec
 	@:to @:noCompletion public static inline function toNative(v:B3RecQueryInfo):B3RecQueryInfoNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RecQueryInfoStruct):B3RecQueryInfo { return new B3RecQueryInfo(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RecQueryInfo):B3RecQueryInfoStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecQueryInfo):cpp.RawPointer<B3RecQueryInfoNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecQueryInfo):cpp.RawPointer<B3RecQueryInfoNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RecQueryInfoNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RecQueryInfoNative) * size) : null;
@@ -3786,7 +3786,7 @@ abstract B3RecQueryHit(B3RecQueryHitStruct) from B3RecQueryHitStruct to B3RecQue
 	@:to @:noCompletion public static inline function toNative(v:B3RecQueryHit):B3RecQueryHitNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3RecQueryHitStruct):B3RecQueryHit { return new B3RecQueryHit(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3RecQueryHit):B3RecQueryHitStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecQueryHit):cpp.RawPointer<B3RecQueryHitNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3RecQueryHit):cpp.RawPointer<B3RecQueryHitNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3RecQueryHitNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3RecQueryHitNative) * size) : null;
@@ -3818,7 +3818,7 @@ abstract B3Point2D(B3Point2DStruct) from B3Point2DStruct to B3Point2DStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Point2D):B3Point2DNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3Point2DStruct):B3Point2D { return new B3Point2D(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Point2D):B3Point2DStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Point2D):cpp.RawPointer<B3Point2DNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Point2D):cpp.RawPointer<B3Point2DNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Point2DNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Point2DNative) * size) : null;
@@ -3849,7 +3849,7 @@ abstract B3Vec2(B3Vec2Struct) from B3Vec2Struct to B3Vec2Struct {
 	@:to @:noCompletion public static inline function toNative(v:B3Vec2):B3Vec2Native { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3Vec2Struct):B3Vec2 { return new B3Vec2(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Vec2):B3Vec2Struct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Vec2):cpp.RawPointer<B3Vec2Native> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Vec2):cpp.RawPointer<B3Vec2Native> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3Vec2Native> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3Vec2Native) * size) : null;
@@ -3880,7 +3880,7 @@ abstract B3CosSin(B3CosSinStruct) from B3CosSinStruct to B3CosSinStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3CosSin):B3CosSinNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3CosSinStruct):B3CosSin { return new B3CosSin(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3CosSin):B3CosSinStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CosSin):cpp.RawPointer<B3CosSinNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3CosSin):cpp.RawPointer<B3CosSinNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3CosSinNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3CosSinNative) * size) : null;
@@ -3911,7 +3911,7 @@ abstract B3Quat(B3QuatStruct) from B3QuatStruct to B3QuatStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Quat):B3QuatNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3QuatStruct):B3Quat { return new B3Quat(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Quat):B3QuatStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Quat):cpp.RawPointer<B3QuatNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Quat):cpp.RawPointer<B3QuatNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3QuatNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3QuatNative) * size) : null;
@@ -3942,7 +3942,7 @@ abstract B3AABB(B3AABBStruct) from B3AABBStruct to B3AABBStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3AABB):B3AABBNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3AABBStruct):B3AABB { return new B3AABB(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3AABB):B3AABBStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3AABB):cpp.RawPointer<B3AABBNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3AABB):cpp.RawPointer<B3AABBNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3AABBNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3AABBNative) * size) : null;
@@ -3973,7 +3973,7 @@ abstract B3Plane(B3PlaneStruct) from B3PlaneStruct to B3PlaneStruct {
 	@:to @:noCompletion public static inline function toNative(v:B3Plane):B3PlaneNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3PlaneStruct):B3Plane { return new B3Plane(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3Plane):B3PlaneStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Plane):cpp.RawPointer<B3PlaneNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3Plane):cpp.RawPointer<B3PlaneNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3PlaneNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3PlaneNative) * size) : null;
@@ -4006,7 +4006,7 @@ abstract B3SegmentDistanceResult(B3SegmentDistanceResultStruct) from B3SegmentDi
 	@:to @:noCompletion public static inline function toNative(v:B3SegmentDistanceResult):B3SegmentDistanceResultNative { return cast v; }
 	@:from @:noCompletion public static inline function fromStruct(v:B3SegmentDistanceResultStruct):B3SegmentDistanceResult { return new B3SegmentDistanceResult(v); }
 	@:to @:noCompletion public static inline function toStruct(v:B3SegmentDistanceResult):B3SegmentDistanceResultStruct { return cast v; }
-	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SegmentDistanceResult):cpp.RawPointer<B3SegmentDistanceResultNative> { return v.toPointer(); }
+	@:to @:noCompletion public static extern inline function autoToPointer(v:B3SegmentDistanceResult):cpp.RawPointer<B3SegmentDistanceResultNative> { return untyped __cpp__("&{0}.get()", v); }
 
 	public static inline function allocNativeArray(size:Int):cpp.Pointer<B3SegmentDistanceResultNative> {
 		return size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(B3SegmentDistanceResultNative) * size) : null;

@@ -506,7 +506,7 @@ function generateBindingsForStruct(struct:CStructDecl) {
     binding.hxDef += '\n\t@:to @:noCompletion public static inline function toNative(v:${hxName}):${hxName}Native { return cast v; }';
     binding.hxDef += '\n\t@:from @:noCompletion public static inline function fromStruct(v:${hxName}Struct):${hxName} { return new ${hxName}(v); }';
     binding.hxDef += '\n\t@:to @:noCompletion public static inline function toStruct(v:${hxName}):${hxName}Struct { return cast v; }';
-    binding.hxDef += '\n\t@:to @:noCompletion public static extern inline function autoToPointer(v:${hxName}):cpp.RawPointer<${hxName}Native> { return v.toPointer(); }';
+    binding.hxDef += '\n\t@:to @:noCompletion public static extern inline function autoToPointer(v:${hxName}):cpp.RawPointer<${hxName}Native> { return untyped __cpp__("&{0}.get()", v); }';
     binding.hxDef += '\n';
     binding.hxDef += '\n\tpublic static inline function allocNativeArray(size:Int):cpp.Pointer<${hxName}Native> {';
     binding.hxDef += '\n\t\treturn size > 0 ? cast cpp.NativeGc.allocGcBytes(cpp.Stdlib.sizeof(${hxName}Native) * size) : null;';
